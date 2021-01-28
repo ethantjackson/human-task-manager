@@ -21,15 +21,12 @@
 
 ## Project Description
  > Your project description should summarize the project you are proposing. Be sure to include
- > * Why is it important or interesting to you?
- > * What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
- >   * [toolname](link) - Short description
- > * What will be the input/output of your project?
- > * What are the two design patterns you will be using? For each design pattern you must explain in 4-5 sentences:
- >   * Why you picked this pattern and what feature you will implement with it
- >   * What problem you anticipate encountering when implementing your project that you will solve using the design pattern
- >   * Why the chosen design pattern will lead to a good solution to that problem
- > * This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
+ > * Time management is an integral aspect of productivity. Human Task Manager helps visualize and manage your schedule, and can ultimately help you become the best human you can be. With various sorting methods, Human Task Manager can help you prioritize your life events, and permanent reminders can be set to help manage your everyday activities. Human Task Manager will also utilize save features and user management to allow multiple users to quickly access, modify, and save their schedules for external use.
+ > * Human Task Manager will utilize c++, and will be able to utilize file input and output to enable reading and writing of save files.
+ > * Human Task Manager will receive input from text files and write to text files. It will also utilize command line input and output to interface with the user.
+ > * Human Task Manager will utilize the Composite and Singleton Design Patterns. 
+ > * The Composite design pattern will be used to implement each user's task lists. The Composite design pattern consists of a components, leafs, and composites. Respectfully, these components are represented as task lists, tasks, and projects (which contain task lists). By introducing the Composite design pattern, the hierarchal nature of task lists can be best implemented, and the potential difficulty of recursive object hierarchies is addressed. 
+ > * The Singleton design pattern will be used to implement the user management class. This design pattern is useful for user management as the program will only utilize one list of users. The program would also benefit from a global method for controlling this user list. The Singleton design pattern avoids the instantiation of multiple user lists and avoids ambiguity in how this single user list can be managed.
 
  > ## Phase II
  > In addition to completing the "Class Diagram" section below, you will need to 
