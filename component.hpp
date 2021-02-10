@@ -1,3 +1,6 @@
+#ifndef __COMPONENT_HPP__
+#define __COMPONENT_HPP__
+
 #include <iostream>
 
 using namespace std;
@@ -20,3 +23,5 @@ class Component {
 	virtual void remove() = 0;
 	virtual void rename(string) = 0;
 };
+
+#endif
