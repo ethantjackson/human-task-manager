@@ -89,3 +89,23 @@ void SingletonUser::saveUsers() {
                 sfile.close();
         }
 }
+
+void SingletonUser::reset()
+{
+	delete homeList;
+	homeList = new TaskList("Home List", nullptr);
+	ifstream sfile;
+	sfile.open(username + ".txt");
+	if (sfile.is_open()) {
+		string data;
+		string token;
+		while (getline(sfile, token)) {
+			data += token;
+		}
+		if (data != "") {
+			homeList->load(data);
+		}
+   		sfile.close();
+	}
+	curr = homeList;
+}
