@@ -45,7 +45,7 @@
 
  * Singleton: The Singleton design pattern is used to implement the UserControl class. UserControl manages the Users of Human Task Manager, and signIn() conducts the login process when the application is running. Regarding the User class, the homeList holds the User’s entire list of tasks, while currList is used in conjunction with the navigate function to explore and manipulate the User’s different sub-tasks.
 
->![Singleton Diagram (2)](https://user-images.githubusercontent.com/68174967/107472372-adde8180-6b23-11eb-9232-972fe32b4ad8.JPG)
+>![Singleton Diagram (3)](https://user-images.githubusercontent.com/57571449/108030581-5721ed80-6fe4-11eb-83df-3bb20ad241d0.png)
 
  > ## Phase III
  > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
