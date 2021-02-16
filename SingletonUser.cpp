@@ -31,3 +31,33 @@ SingletonUser::SingletonUser() {
 	}
 	curr = homeList;
 }
+
+void SingletonUser::navigate() {
+	char choice;
+	cout << "Would you like to (1) move back one list, (2) move to subtask, or (3) stay: ";
+	cin >> choice;
+	while (choice != '3') {
+		if (choice == '1') {
+			if (curr->getParent() == nullptr) {
+				cout << "Already at Home List..." << endl;
+				return;
+			}
+			else {
+				navigateBack();
+			}
+		}
+		else if (choice == '2') {
+			string task;
+			cout << "Specify which subtask to move to: " << endl;
+			cin.ignore();
+			getline(cin, task);
+			curr = curr->navigate(task);
+		}
+		else {
+			cout << "Invalid Choice" << endl;
+		}
+		cout << "Would you like to (1) move back one list, (2) move to subtask, or (3) stay: ";
+		cin >> choice;
+		cout << endl;
+	}
+}
