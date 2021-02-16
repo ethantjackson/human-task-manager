@@ -61,3 +61,31 @@ void SingletonUser::navigate() {
 		cout << endl;
 	}
 }
+
+void SingletonUser::save()
+{
+	saveUsers();
+
+	ofstream sfile;
+	sfile.open(username + ".txt");
+	if (sfile.is_open()) {
+		sfile << homeList->save();
+		sfile.close();
+	}
+	else {
+		cout << "Failed to open: " << username << ".txt" << endl;
+		exit(1);
+	}
+}
+
+void SingletonUser::saveUsers() {
+	 ofstream sfile;
+
+        sfile.open("Users.txt");
+        if (sfile.is_open()) {
+                for (auto p : users) {
+                        sfile << p.first << "," << p.second << ",";
+                }
+                sfile.close();
+        }
+}
