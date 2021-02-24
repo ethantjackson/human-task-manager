@@ -1,10 +1,14 @@
-#pragma once
-#include "Component.h"
+#ifndef TASK_H
+#define TASK_H
 
-class TaskList : public Component
+#include "TaskList.h"
+#include "SingletonUser.h"
+
+using namespace std;
+
+class Task : public Component
 {
 private:
-	vector<Component*> contents;
 	TaskList* parentList;
 	string title;
 	string dueDate;
@@ -13,9 +17,8 @@ private:
 	void help();
 	void info();
 public:
-	TaskList(string, TaskList*);
-	TaskList(string, string, string, bool, TaskList*);
-	~TaskList();
+	Task(string, TaskList*);
+	~Task() = default;
 
 	virtual Component* getParent();
 	virtual Component* navigate(string);
@@ -23,7 +26,6 @@ public:
 	virtual int numSubTasks();
 	virtual int getLevel();
 	virtual string save();
-	void load(string); 
 
 	virtual void setDone(bool);
 	virtual void display();
@@ -34,9 +36,7 @@ public:
 	virtual char run();
 	virtual void add(string);
 	virtual void remove();
-	void remove(string);
 	virtual void rename(string);
-	
-	void TaskListify(TaskList*, string);
 };
 
+#endif
