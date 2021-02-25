@@ -41,6 +41,7 @@ string Task::save()
     string data = "<," + title + "," + dueDate + "," + description + ",";
     if (done) data += "1,";
     else data += "0,";
+    data += ">";
     return data;
 }
 
