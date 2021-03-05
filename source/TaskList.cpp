@@ -37,9 +37,9 @@ TaskList* TaskList::navigate(string task)
             try {
                 return dynamic_cast<TaskList*>(c);
             }
-            catch (const std::bad_cast& e)
+            catch (...)
             {
-                std::cout << "Cannot open task..." << e.what() << "\n";
+                std::cout << "Cannot open task...\n";
                 return this;
             }
         }

@@ -4,7 +4,8 @@ SET(CMAKE_CXX_STANDARD 11)
 
 ADD_EXECUTABLE(task
 	source/main.cpp
-	source/SingletonUser.cpp
+	source/InitFactory.cpp
+	source/UserControl.cpp
 	source/Task.cpp
 	source/TaskList.cpp
 )
