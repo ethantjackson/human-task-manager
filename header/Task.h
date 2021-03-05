@@ -1,8 +1,6 @@
-#ifndef TASK_H
-#define TASK_H
+#pragma once
 
 #include "TaskList.h"
-#include "SingletonUser.hpp"
 
 using namespace std;
 
@@ -18,10 +16,10 @@ private:
 	void info();
 public:
 	Task(string, TaskList*);
+	Task(string title, string dueDate, string description, bool done, TaskList* parentList);
 	~Task() = default;
 
-	virtual Component* getParent();
-	virtual Component* navigate(string);
+	//virtual Component* navigate(string);
 	virtual string getTitle();
 	virtual int numSubTasks();
 	virtual int getLevel();
@@ -37,6 +35,9 @@ public:
 	virtual void add(string);
 	virtual void remove();
 	virtual void rename(string);
+
+	virtual int num_children() { return 0; }
+	TaskList* getParent();
+	virtual Component* get_child(int index) { return nullptr; }
 };
 
-#endif
