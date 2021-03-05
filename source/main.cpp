@@ -1,5 +1,5 @@
-#include "../header/InitFactory.h"
-#include "../header/UserControl.h"
+#include "InitFactory.h"
+#include "UserControl.h"
 
 using namespace std;
 
