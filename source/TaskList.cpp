@@ -1,7 +1,5 @@
 #include "../header/Task.h"
 
-SingletonUser* user = user->getInstance();
-
 TaskList::TaskList(string title, TaskList* parentList)
 {
     this->title = title;
@@ -11,7 +9,7 @@ TaskList::TaskList(string title, TaskList* parentList)
     this->done = false;
 }
 
-TaskList::TaskList(string title, string dueDate, 
+TaskList::TaskList(string title, string dueDate,
     string description, bool done, TaskList* parentList)
 {
     this->title = title;
@@ -27,16 +25,23 @@ TaskList::~TaskList() {
     }
 }
 
-Component* TaskList::getParent()
+TaskList* TaskList::getParent()
 {
     return parentList;
 }
 
-Component* TaskList::navigate(string task)
+TaskList* TaskList::navigate(string task)
 {
     for (auto c : contents) {
         if (c->getTitle() == task) {
-            return c;
+            try {
+                return dynamic_cast<TaskList*>(c);
+            }
+            catch (const std::bad_cast& e)
+            {
+                std::cout << "Cannot open task..." << e.what() << "\n";
+                return this;
+            }
         }
     }
     cout << "Task Not Found" << endl;
@@ -65,57 +70,84 @@ int TaskList::getLevel()
 
 string TaskList::save()
 {
-    string sstring = "<," + title + "," + dueDate + "," + description + ",";
+    string sstring = "<tl>," + title + "," + dueDate + "," + description + ",";
     if (done) sstring += "1,";
     else sstring += "0,";
     for (auto c : contents) {
         sstring += c->save();
     }
-    sstring += ">";
+    sstring += "</tl>,";
     return sstring;
 }
 
 void TaskList::load(string data)
 {
-    //cout << "data:\n" << data << endl;
     stringstream ss(data);
-    ss.ignore();
-    ss.ignore();
     string info;
-    getline(ss, info, ',');
-    rename(info);
-    getline(ss, info, ',');
-    setDueDate(info);
-    getline(ss, info, ',');
-    setDescription(info);
-    getline(ss, info, ',');
-    if (info == "1") setDone(true);
+    string token;
+    int endListCount;
+
+    getline(ss, token, ','); // ignore first <tl>
+
+    getline(ss, token, ',');
+    rename(token);
+    getline(ss, token, ',');
+    setDueDate(token);
+    getline(ss, token, ',');
+    setDescription(token);
+    getline(ss, token, ',');
+    if (token == "1") setDone(true);
     else setDone(false);
-    while (getline(ss, info, ',')) {
-        if (info == "<") {
-            //get rest of line, push back new task list, call load(rest of string) on new task list
-            info += ",";
-            string tmp;
-            getline(ss, tmp, '>');
-            ss.ignore();
-            info += tmp;
-            info += ">";
-            //cout << "list data:\n" << title << endl;
-            contents.push_back(new TaskList("tmp", this));
-            static_cast<TaskList*>(contents.at(contents.size() - 1))->load(info);
+
+    while (getline(ss, token, ',')) {
+        if (token == "<tl>") {
+            //append new task list
+            endListCount = 1;
+            info = token + ",";
+            while (endListCount != 0) {
+                getline(ss, token, ',');
+                info += (token + ",");
+                if (token == "</tl>") --endListCount;
+                else if (token == "<tl>") ++endListCount;
+                //cout << "tl(r) token: \"" << token << "\"\n";
+            }
+            info += "</tl>,";
+            //cout << "tl(r) info: \"" << info << "\"\n";
+            appendTaskList(info);
         }
-        else if (info != ">") {
-            //cout << "task title:\n" << title << endl;
-            contents.push_back(new Task(info, this));
-            getline(ss, info, ',');
-            contents.back()->setDueDate(info);
-            getline(ss, info, ',');
-            contents.back()->setDescription(info);
-            getline(ss, info, ',');
-            if (info == "1") contents.back()->setDone(true);
-            else contents.back()->setDone(false);
+        if (token == "<t>") {
+            info = token + ",";
+            while (token != "</t>") {
+                getline(ss, token, ',');
+                info += (token + ",");
+                //cout << "t(r) token: \"" << token << "\"\n";
+            }
+            info += "</t>,";
+            //cout << "t(r) info: \"" << info << "\"\n";
+            appendTask(info);
         }
     }
+}
+void TaskList::appendTaskList(string saveInfo)
+{
+    contents.push_back(new TaskList("tmp", this));
+    static_cast<TaskList*>(contents.at(contents.size() - 1))->load(saveInfo);
+}
+void TaskList::appendTask(string saveInfo) {
+    stringstream ss(saveInfo);
+    string title, dueDate, description, token;
+    bool done;
+
+    getline(ss, token, ','); // ignore first <t>
+
+    getline(ss, title, ',');
+    getline(ss, dueDate, ',');
+    getline(ss, description, ',');
+    getline(ss, token, ',');
+    if (token == "1") done = true;
+    else done = false;
+
+    contents.push_back(new Task(title, dueDate, description, done, this));
 }
 
 void TaskList::remove()
@@ -131,9 +163,10 @@ void TaskList::remove()
             }
         }
         else {
-            if (this == user->getCurr())
-            user->navigateBack();
-            parentList->remove(title);
+            /*if (this == user->getCurr())
+                user->navigateBack();
+            parentList->remove(title);*/
+            cout << "cannot remove self\n";
         }
     }
     else if (choice == '2') {
@@ -186,7 +219,7 @@ void TaskList::display()
     if (done) cout << "(DONE)";
     cout << endl;
     for (auto c : contents) {
-        for (int i = getLevel() - user->getCurr()->getLevel(); i >= 0; --i) {
+        for (int i = getLevel(); i >= 0; --i) {
             cout << "    ";
         }
         c->display();
@@ -234,8 +267,8 @@ char TaskList::run()
     }
 
     else if (answer == "d") {
-            display();
-        }
+        display();
+    }
 
     else if (answer == "cd") {
         string newDescription;
@@ -273,7 +306,7 @@ char TaskList::run()
         rename(newName);
     }
 
-    else if (answer!="q" && answer!="n" && answer != "s" && answer !="u" && answer != "l") {
+    else if (answer != "q" && answer != "n" && answer != "s" && answer != "u" && answer != "l") {
         cout << "Invalid Action" << endl;
     }
 
@@ -334,5 +367,5 @@ void TaskList::TaskListify(TaskList* task, string newTask)
 {
     remove(task->getTitle());
     contents.push_back(task);
-    contents.at(contents.size()-1)->add(newTask);
+    contents.at(contents.size() - 1)->add(newTask);
 }

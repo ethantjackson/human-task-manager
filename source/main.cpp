@@ -1,9 +1,10 @@
-#include "../header/SingletonUser.hpp"
+#include "../header/InitFactory.h"
+#include "../header/UserControl.h"
 
-SingletonUser* SingletonUser::instance = 0;
+using namespace std;
 
 int main() {
-	SingletonUser* user = user->getInstance();
+	UserControl* user = new UserControl();
 	char action = user->getCurr()->run();
 	while (action != 'q') {
 		if (action == 'n') {
@@ -23,5 +24,6 @@ int main() {
 		action = user->getCurr()->run();
 	}
 	user->save();
+
 	return 0;
 }

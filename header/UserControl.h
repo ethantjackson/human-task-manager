@@ -1,5 +1,6 @@
 #pragma once
 #include "TaskList.h"
+#include "InitFactory.h"
 
 #include <fstream>
 #include <cstring>
@@ -7,32 +8,28 @@
 
 using namespace std;
 
-class SingletonUser
+class UserControl
 {
 private:
-	static SingletonUser* instance;
+	InitFactory* init;
 	TaskList* homeList;
-	Component* curr;
+	TaskList* curr;
 	string username = "none";
 
 	vector<pair<string,string>> users;
 	void saveUsers();
 
-	SingletonUser();
-	~SingletonUser() {
+public:
+	UserControl();
+	~UserControl() {
 		delete homeList;
 	}
-public:
-	static SingletonUser* getInstance() {
-		if (!instance)
-			instance = new SingletonUser();
-		return instance;
-	}
-	Component* getCurr() {return this->curr;}
-	Component* setCurr(Component* newCurr) {this->curr = newCurr;}
+	TaskList* getCurr() {return this->curr;}
+	void setCurr(TaskList* newCurr) {this->curr = newCurr;}
 	void navigate();
 	void navigateBack() {curr = curr->getParent();}
 	void save();
 	void reset();
 	void login();
 };
+

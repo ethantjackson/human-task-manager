@@ -1,5 +1,7 @@
 #pragma once
-#include "component.hpp"
+#include "Component.h"
+
+#include <algorithm>
 
 class TaskList : public Component
 {
@@ -12,18 +14,23 @@ private:
 	bool done;
 	void help();
 	void info();
+
+
 public:
 	TaskList(string, TaskList*);
 	TaskList(string, string, string, bool, TaskList*);
 	~TaskList();
 
-	virtual Component* getParent();
-	virtual Component* navigate(string);
+	TaskList* navigate(string);
+
 	virtual string getTitle();
 	virtual int numSubTasks();
 	virtual int getLevel();
 	virtual string save();
-	void load(string); 
+	
+	void load(string);
+	void appendTaskList(string saveInfo);
+	void appendTask(string saveInfo);
 
 	virtual void setDone(bool);
 	virtual void display();
@@ -38,5 +45,10 @@ public:
 	virtual void rename(string);
 	
 	void TaskListify(TaskList*, string);
+
+	virtual int num_children() { return contents.size(); }
+
+	TaskList* getParent();
+	virtual Component* get_child(int index) { return contents.at(index); }
 };
 
