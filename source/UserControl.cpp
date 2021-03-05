@@ -45,14 +45,19 @@ void UserControl::navigate() {
 			}
 			else {
 				navigateBack();
+        curr->display();
+        cout << endl;
 			}
 		}
 		else if (choice == '2') {
 			string task;
-			cout << "Specify which subtask to move to: " << endl;
+			cout << "Specify which subtask to move to: ";
 			cin.ignore();
 			getline(cin, task);
+      cout << endl;
 			curr = curr->navigate(task);
+      curr->display();
+      cout << endl;
 		}
 		else {
 			cout << "Invalid Choice" << endl;
