@@ -1,4 +1,4 @@
-#include "UserControl.h"
+#include "../header/UserControl.h"
 
 UserControl::UserControl() {
 	init = new InitFactory();
