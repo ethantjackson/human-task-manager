@@ -1,4 +1,4 @@
-#include "../header/Task.h"
+#include "Task.h"
 
 Task::Task(string title, TaskList* parentList)
 {

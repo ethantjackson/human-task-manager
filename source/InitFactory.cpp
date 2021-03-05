@@ -1,4 +1,4 @@
-#include "../header/InitFactory.h"
+#include "InitFactory.h"
 
 InitFactory::InitFactory() {
     root = new TaskList("Home List", nullptr);
