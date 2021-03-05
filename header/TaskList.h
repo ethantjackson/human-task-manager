@@ -13,7 +13,6 @@ private:
 	string description;
 	bool done;
 	void help();
-	void info();
 
 
 public:
@@ -22,6 +21,8 @@ public:
 	~TaskList();
 
 	TaskList* navigate(string);
+	
+	void info();
 
 	virtual string getTitle();
 	virtual int numSubTasks();
