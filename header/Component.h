@@ -27,7 +27,7 @@ public:
 	// virtual void remove() = 0;
 	virtual void rename(string) = 0;
   virtual bool validCurrTarget() = 0;
-	
+	virtual void info() = 0;
 	//Iterator functions
 	// virtual int num_children() = 0;
 	// virtual Component* get_child(int index) = 0;

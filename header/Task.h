@@ -13,7 +13,6 @@ private:
 	string description;
 	bool done;
 	// void help();
-	void info();
 public:
 	Task(string, TaskList*);
 	Task(string title, string dueDate, string description, bool done, TaskList* parentList);
@@ -37,6 +36,7 @@ public:
 	// virtual void remove();
 	virtual void rename(string);
   virtual bool validCurrTarget() {return false;}
+  virtual void info();
 
 	// virtual int num_children() { return 0; }
 	TaskList* getParent();
