@@ -13,7 +13,8 @@ public:
 	virtual ~Component() = default;
 
 	virtual string getTitle() = 0;
-	virtual int numSubTasks() = 0;
+	virtual int countSubTasks() = 0;
+  virtual int countSubTaskLists() = 0;
 	virtual int getLevel() = 0;
 	virtual string save() = 0;
 
@@ -21,14 +22,15 @@ public:
 	virtual void display() = 0;
 	virtual void setDescription(string) = 0;
 	virtual void setDueDate(string) = 0;
-	virtual char run() = 0;
-	virtual void add(string) = 0;
-	virtual void remove() = 0;
+	// virtual char run() = 0;
+	// virtual void add(string) = 0;
+	// virtual void remove() = 0;
 	virtual void rename(string) = 0;
+  virtual bool validCurrTarget() = 0;
 	
 	//Iterator functions
-	virtual int num_children() = 0;
-	virtual Component* get_child(int index) = 0;
+	// virtual int num_children() = 0;
+	// virtual Component* get_child(int index) = 0;
 };
 
 #endif

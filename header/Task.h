@@ -21,7 +21,8 @@ public:
 
 	//virtual Component* navigate(string);
 	virtual string getTitle();
-	virtual int numSubTasks();
+	virtual int countSubTasks();
+  virtual int countSubTaskLists();
 	virtual int getLevel();
 	virtual string save();
 
@@ -33,11 +34,12 @@ public:
 	virtual void setDueDate(string);
 	// virtual char run();
 	// virtual void add(string);
-	virtual void remove();
+	// virtual void remove();
 	virtual void rename(string);
+  virtual bool validCurrTarget() {return false;}
 
-	virtual int num_children() { return 0; }
+	// virtual int num_children() { return 0; }
 	TaskList* getParent();
-	virtual Component* get_child(int index) { return nullptr; }
+	// virtual Component* get_child(int index) { return nullptr; }
 };
 
