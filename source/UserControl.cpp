@@ -35,7 +35,7 @@ UserControl::UserControl() {
 
 void UserControl::navigate() {
 	char choice;
-	cout << "Would you like to (1) move back one list, (2) move to subtask, or (3) stay: ";
+	cout << "Would you like to (1) move back one list, (2) move to sub-tasklist, or (3) stay: ";
 	cin >> choice;
 	while (choice != '3') {
 		if (choice == '1') {
@@ -51,7 +51,7 @@ void UserControl::navigate() {
 		}
 		else if (choice == '2') {
 			string task;
-			cout << "Specify which subtask to move to: ";
+			cout << "Specify which sub-tasklist to move to: ";
 			cin.ignore();
 			getline(cin, task);
       cout << endl;

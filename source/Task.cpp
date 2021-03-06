@@ -34,9 +34,13 @@ string Task::getTitle()
     return title;
 }
 
-int Task::numSubTasks()
+int Task::countSubTasks()
 {
     return 1;
+}
+int Task::countSubTaskLists()
+{
+    return 0;
 }
 
 int Task::getLevel()
@@ -195,13 +199,13 @@ void Task::setDueDate(string newDueDate)
 //     //self destruct and navigate to parentlist
 // }
 
-void Task::remove()
-{
-    /*SingletonUser* user = user->getInstance();
-    if (this == user->getCurr())
-        user->navigateBack();
-    parentList->remove(title);*/
-}
+// void Task::remove()
+// {
+//     /*SingletonUser* user = user->getInstance();
+//     if (this == user->getCurr())
+//         user->navigateBack();
+//     parentList->remove(title);*/
+// }
 
 void Task::rename(string title)
 {
