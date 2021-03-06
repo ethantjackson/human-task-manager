@@ -172,7 +172,7 @@ int main() {
 	}
 	
   cout << "\nSaving..." << endl;
-	user->getCurr()->save();
+	user->save();
 
 	return 0;
 }
