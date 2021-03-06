@@ -12,7 +12,7 @@ private:
 	string dueDate;
 	string description;
 	bool done;
-	void help();
+	// void help();
 
 
 public:
@@ -39,8 +39,8 @@ public:
 	virtual void setDescription(string);
 	//virtual void getDueDate();
 	virtual void setDueDate(string);
-	virtual char run();
-	virtual void add(string);
+	// virtual char run();
+	// void add(string);
 	virtual void remove();
 	void remove(string);
 	virtual void rename(string);

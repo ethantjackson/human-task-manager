@@ -59,22 +59,22 @@ void Task::setDone(bool status)
     done = status;
 }
 
-void Task::help()
-{
-    cout << "    i: info" << endl;
-    cout << "    sd: set to done" << endl;
-    cout << "    d: display" << endl;
-    cout << "    cd: change description" << endl;
-    cout << "    due: set due date" << endl;
-    cout << "    a: add task" << endl;
-    cout << "    r: remove task" << endl;
-    cout << "    re: rename task" << endl;
-    cout << "    n: navigate" << endl;
-    cout << "    q: quit" << endl;
-    cout << "    s: save" << endl;
-    cout << "    u: undo to last save" << endl;
-    cout << "    l: login to new user" << endl;
-}
+// void Task::help()
+// {
+//     cout << "    i: info" << endl;
+//     cout << "    sd: set to done" << endl;
+//     cout << "    d: display" << endl;
+//     cout << "    cd: change description" << endl;
+//     cout << "    due: set due date" << endl;
+//     cout << "    a: add task" << endl;
+//     cout << "    r: remove task" << endl;
+//     cout << "    re: rename task" << endl;
+//     cout << "    n: navigate" << endl;
+//     cout << "    q: quit" << endl;
+//     cout << "    s: save" << endl;
+//     cout << "    u: undo to last save" << endl;
+//     cout << "    l: login to new user" << endl;
+// }
 
 void Task::info()
 {
@@ -103,97 +103,97 @@ void Task::setDueDate(string newDueDate)
     dueDate = newDueDate;
 }
 
-char Task::run()
-{
-    string answer;
-    cout << "Enter action: (enter h for help)" << endl;
-    cin >> answer;
+// char Task::run()
+// {
+//     string answer;
+//     cout << "Enter action: (enter h for help)" << endl;
+//     cin >> answer;
 
-    if (answer == "h") {
-        help();
-    }
+//     if (answer == "h") {
+//         help();
+//     }
 
-    else if (answer == "i") {
-        info();
-    }
+//     else if (answer == "i") {
+//         info();
+//     }
 
-    else if (answer == "sd") {
-        char choice;
-        cout << "Is this task done?(y/n) ";
-        cin >> choice;
-        cout << endl;
-        if (choice == 'y') {
-            setDone(true);
-        }
-        else if (choice == 'n') {
-            setDone(false);
-        }
-        else {
-            cout << "Invalid Choice" << endl;
-        }
-    }
+//     else if (answer == "sd") {
+//         char choice;
+//         cout << "Is this task done?(y/n) ";
+//         cin >> choice;
+//         cout << endl;
+//         if (choice == 'y') {
+//             setDone(true);
+//         }
+//         else if (choice == 'n') {
+//             setDone(false);
+//         }
+//         else {
+//             cout << "Invalid Choice" << endl;
+//         }
+//     }
 
-    else if (answer == "d") {
-        display();
-    }
+//     else if (answer == "d") {
+//         display();
+//     }
 
-    else if (answer == "cd") {
-        string newDescription;
-        cout << "Enter new description: " << endl;
-        cin.ignore();
-        getline(cin, newDescription);
-        setDescription(newDescription);
-    }
+//     else if (answer == "cd") {
+//         string newDescription;
+//         cout << "Enter new description: " << endl;
+//         cin.ignore();
+//         getline(cin, newDescription);
+//         setDescription(newDescription);
+//     }
 
-    else if (answer == "due") {
-        string newDueDate;
-        cout << "Enter new due date " << endl;
-        cin.ignore();
-        getline(cin, newDueDate);
-        setDueDate(newDueDate);
-    }
+//     else if (answer == "due") {
+//         string newDueDate;
+//         cout << "Enter new due date " << endl;
+//         cin.ignore();
+//         getline(cin, newDueDate);
+//         setDueDate(newDueDate);
+//     }
 
-    else if (answer == "a") {
-        string task;
-        cout << "Specify a task to add" << endl;
-        cin.ignore();
-        getline(cin, task);
-        add(task);
-    }
+//     else if (answer == "a") {
+//         string task;
+//         cout << "Specify a task to add" << endl;
+//         cin.ignore();
+//         getline(cin, task);
+//         add(task);
+//     }
 
-    else if (answer == "r") {
-        remove();
-    }
+//     else if (answer == "r") {
+//         remove();
+//     }
 
-    else if (answer == "re") {
-        string newName;
-        cout << "Enter new title: " << endl;
-        cin.ignore();
-        getline(cin, newName);
-        rename(newName);
-    }
+//     else if (answer == "re") {
+//         string newName;
+//         cout << "Enter new title: " << endl;
+//         cin.ignore();
+//         getline(cin, newName);
+//         rename(newName);
+//     }
 
-    else if (answer != "q" && answer != "n" && answer != "s" && answer != "u" && answer != "l") {
-        cout << "Invalid Action" << endl;
-    }
+//     else if (answer != "q" && answer != "n" && answer != "s" && answer != "u" && answer != "l") {
+//         cout << "Invalid Action" << endl;
+//     }
 
-    cout << endl;
+//     cout << endl;
 
-    return answer[0];
-}
+//     return answer[0];
+// }
 
-void Task::add(string newTask)
-{
-    /*cout << "cannot add to task...\n";
-    return;*/
-    if (newTask.find("<") != string::npos || newTask.find(">") != string::npos) {
-        cout << "Invalid Task Name" << endl;
-        return;
-    }
-    parentList->TaskListify(new TaskList(title, dueDate, description, done, parentList),
-        newTask);
-    //self destruct and navigate to parentlist
-}
+// void Task::add(string newTask)
+// {
+//     /*cout << "cannot add to task...\n";
+//     return;*/
+//     if (newTask.find("<") != string::npos || newTask.find(">") != string::npos) {
+//         cout << "Invalid Task Name" << endl;
+//         return;
+//     }
+//     parentList->TaskListify(new TaskList(title, dueDate, description, done, parentList),
+//         newTask);
+//     //self destruct and navigate to parentlist
+// }
 
 void Task::remove()
 {
