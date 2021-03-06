@@ -69,6 +69,7 @@ int main() {
     }
 
     else if (answer == "d") {
+	cout << endl;
         user->getCurr()->display();
     }
 

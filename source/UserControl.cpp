@@ -40,13 +40,12 @@ void UserControl::navigate() {
 	while (choice != '3') {
 		if (choice == '1') {
 			if (curr->getParent() == nullptr) {
-				cout << "Already at Home List..." << endl;
-				return;
+				cout << "Already at Home List..." << endl << endl;
 			}
 			else {
 				navigateBack();
-        curr->display();
-        cout << endl;
+        			curr->display();
+        			cout << endl;
 			}
 		}
 		else if (choice == '2') {
@@ -54,10 +53,11 @@ void UserControl::navigate() {
 			cout << "Specify which sub-tasklist to move to: ";
 			cin.ignore();
 			getline(cin, task);
-      cout << endl;
+      			cout << endl;
 			curr = curr->navigate(task);
-      curr->display();
-      cout << endl;
+			cout << endl;
+      			curr->display();
+      			cout << endl;
 		}
 		else {
 			cout << "Invalid Choice" << endl;
