@@ -10,7 +10,7 @@ void help()
         cout << "    d: display" << endl;
         cout << "    cd: change description" << endl;
         cout << "    due: set due date" << endl;
-        cout << "    a: add task" << endl;
+        cout << "    a: add task/task list" << endl;
         cout << "    r: remove task" << endl;
         cout << "    re: rename task" << endl;
         cout << "    n: navigate" << endl;
@@ -89,11 +89,52 @@ int main() {
     }
 
     else if (answer == "a") {
-        string task;
-        cout << "Specify a task to add or which task you would like to add to: " << endl;
-        cin.ignore();
-        getline(cin, task);
-        user->getCurr()->add(task);
+        string data;
+        string tmp;
+        char choice;
+        cout << "Would you like to add a: (1) TaskList or (2) Task? ";
+        cin >> choice; 
+        cout << endl;
+        switch (choice)
+        {
+        case '1':
+          data+="<tl>,";
+          cout << "Enter New TaskList Name: ";
+          cin.ignore();
+          getline(cin, tmp);
+          data+=(tmp+',');
+          cout << "Enter New TaskList Due Date (press ENTER if none): ";
+          getline(cin, tmp);
+          data+=(tmp+',');
+          cout << "Enter New TaskList Description (press ENTER if none): ";
+          getline(cin, tmp);
+          data+=(tmp+',');
+          data+="0,</tl>,";
+          //cout << "data: \"" << data << "\"\n";
+          user->getCurr()->appendTaskList(data);
+          break;
+        
+        case '2':
+          data+="<t>,";
+          cout << "Enter New Task Name: ";
+          cin.ignore();
+          getline(cin, tmp);
+          data+=(tmp+',');
+          cout << "Enter New Task Due Date (press ENTER if none): ";
+          getline(cin, tmp);
+          data+=(tmp+',');
+          cout << "Enter New Task Description (press ENTER if none): ";
+          getline(cin, tmp);
+          data+=(tmp+',');
+          data+="0,</t>,";
+          //cout << "data: \"" << data << "\"\n";
+          user->getCurr()->appendTask(data);
+          break;
+          
+        default:
+          cout << "Invalid Choice...\n";
+          break;
+        }
     }
 
     else if (answer == "r") {

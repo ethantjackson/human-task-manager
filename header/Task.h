@@ -12,7 +12,7 @@ private:
 	string dueDate;
 	string description;
 	bool done;
-	void help();
+	// void help();
 	void info();
 public:
 	Task(string, TaskList*);
@@ -31,8 +31,8 @@ public:
 	virtual void setDescription(string);
 	//virtual void getDueDate();
 	virtual void setDueDate(string);
-	virtual char run();
-	virtual void add(string);
+	// virtual char run();
+	// virtual void add(string);
 	virtual void remove();
 	virtual void rename(string);
 
