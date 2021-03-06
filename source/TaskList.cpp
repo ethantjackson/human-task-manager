@@ -1,4 +1,5 @@
 #include "../header/Task.h"
+#include <typeinfo>
 
 TaskList::TaskList(string title, TaskList* parentList)
 {
@@ -34,13 +35,10 @@ TaskList* TaskList::navigate(string task)
 {
     for (auto c : contents) {
         if (c->getTitle() == task) {
-            try {
-                return dynamic_cast<TaskList*>(c);
-            }
-            catch (...)
-            {
-                std::cout << "Cannot open task...\n";
-                return this;
+            if (c->validCurrTarget()) return static_cast<TaskList*>(c);
+            else {
+              cout << "Cannot open a subtask...\n";
+              return this;
             }
         }
     }
@@ -53,11 +51,19 @@ string TaskList::getTitle()
     return title;
 }
 
-int TaskList::numSubTasks()
+int TaskList::countSubTasks()
 {
     int numSubs = 0;
     for (auto c : contents) {
-        numSubs += c->numSubTasks();
+        numSubs += c->countSubTasks();
+    }
+    return numSubs;
+}
+int TaskList::countSubTaskLists() {
+    int numSubs = 0;
+    ++numSubs;
+    for (auto c : contents) {
+      numSubs += c->countSubTaskLists();
     }
     return numSubs;
 }
@@ -150,41 +156,9 @@ void TaskList::appendTask(string saveInfo) {
     contents.push_back(new Task(title, dueDate, description, done, this));
 }
 
-void TaskList::remove()
+void TaskList::removeAll()
 {
-    char choice;
-    cout << "Would you like to (1) Remove this task list or (2) Remove a subtask? ";
-    cin >> choice;
-    cout << endl;
-    if (choice == '1') {
-        if (!parentList) {
-            for (auto c : contents) {
-                remove(c->getTitle());
-            }
-        }
-        else {
-            /*if (this == user->getCurr())
-                user->navigateBack();
-            parentList->remove(title);*/
-            cout << "cannot remove self\n";
-        }
-    }
-    else if (choice == '2') {
-        string task;
-        cout << "Specify task to remove: " << endl;
-        cin.ignore();
-        getline(cin, task);
-        for (auto c : contents) {
-            if (c->getTitle() == task) {
-                c->remove();
-                return;
-            }
-        }
-        cout << "Task Not Found" << endl;
-    }
-    else {
-        cout << "Invalid Choice" << endl;
-    }
+  contents.clear();
 }
 
 void TaskList::remove(string task)
@@ -355,7 +329,8 @@ void TaskList::rename(string title)
 
 void TaskList::info() {
     cout << "Title: " << title;
-    cout << ", " << numSubTasks() << " subtasks";
+    cout << ", " << countSubTaskLists()-1 << " sublists";
+    cout << ", " << countSubTasks() << " subtasks";
     if (done) cout << " (DONE)";
     cout << endl;
     cout << "Due: " << dueDate << endl;

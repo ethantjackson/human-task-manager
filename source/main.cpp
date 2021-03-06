@@ -11,9 +11,9 @@ void help()
         cout << "    cd: change description" << endl;
         cout << "    due: set due date" << endl;
         cout << "    a: add task/task list" << endl;
-        cout << "    r: remove task" << endl;
-        cout << "    re: rename task" << endl;
-        cout << "    n: navigate" << endl;
+        cout << "    r: remove task/task list" << endl;
+        cout << "    re: rename task/task list" << endl;
+        cout << "    n: navigate task lists" << endl;
         cout << "    q: quit" << endl;
         cout << "    s: save" << endl;
         cout << "    u: undo to last save" << endl;
@@ -138,7 +138,20 @@ int main() {
     }
 
     else if (answer == "r") {
-        user->getCurr()->remove();
+        string target;
+        char choice;
+        cout << "Would you like to (1) remove a subtask/list or (2) remove all contents? ";
+        cin >> choice;
+        if (choice == 1) {
+          cout << "Specify the subtask/list to remove: ";
+          cin.ignore();
+          getline(cin, target);
+          user->getCurr()->remove(target);
+        }
+        else if (choice == 2) {
+          user->getCurr()->removeAll();
+        }
+        user->getCurr()->removeAll();
     }
 
     else if (answer == "re") {
@@ -149,7 +162,7 @@ int main() {
         user->getCurr()->rename(newName);
     }
 
-    else if (answer != "q" && answer != "n" && answer != "s" && answer != "u" && answer != "l") {
+    else{
         cout << "Invalid Action" << endl;
     }
 
@@ -158,6 +171,7 @@ int main() {
 	  cin >> answer;
 	}
 	
+  cout << "\nSaving..." << endl;
 	user->getCurr()->save();
 
 	return 0;

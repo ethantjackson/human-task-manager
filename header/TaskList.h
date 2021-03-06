@@ -25,7 +25,8 @@ public:
 	void info();
 
 	virtual string getTitle();
-	virtual int numSubTasks();
+	virtual int countSubTasks();
+  virtual int countSubTaskLists();
 	virtual int getLevel();
 	virtual string save();
 	
@@ -41,15 +42,16 @@ public:
 	virtual void setDueDate(string);
 	// virtual char run();
 	// void add(string);
-	virtual void remove();
+	void removeAll();
 	void remove(string);
 	virtual void rename(string);
+  virtual bool validCurrTarget() {return true;}
 	
-	void TaskListify(TaskList*, string);
+	//void TaskListify(TaskList*, string);
 
-	virtual int num_children() { return contents.size(); }
+	// virtual int num_children() { return contents.size(); }
 
 	TaskList* getParent();
-	virtual Component* get_child(int index) { return contents.at(index); }
+	// virtual Component* get_child(int index) { return contents.at(index); }
 };
 
