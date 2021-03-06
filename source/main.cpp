@@ -142,16 +142,17 @@ int main() {
         char choice;
         cout << "Would you like to (1) remove a subtask/list or (2) remove all contents? ";
         cin >> choice;
-        if (choice == 1) {
+        if (choice == '1') {
           cout << "Specify the subtask/list to remove: ";
           cin.ignore();
           getline(cin, target);
-          user->getCurr()->remove(target);
+          cout << "Removing...\n";
+	  user->getCurr()->remove(target);
         }
-        else if (choice == 2) {
+        else if (choice == '2') {
+	  cout << "Clearing Contents...\n";
           user->getCurr()->removeAll();
         }
-        user->getCurr()->removeAll();
     }
 
     else if (answer == "re") {
