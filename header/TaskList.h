@@ -21,8 +21,6 @@ public:
 	~TaskList();
 
 	TaskList* navigate(string);
-	
-	void info();
 
 	virtual string getTitle();
 	virtual int countSubTasks();
@@ -46,7 +44,7 @@ public:
 	void remove(string);
 	virtual void rename(string);
   virtual bool validCurrTarget() {return true;}
-	
+	virtual void info();
 	//void TaskListify(TaskList*, string);
 
 	// virtual int num_children() { return contents.size(); }
