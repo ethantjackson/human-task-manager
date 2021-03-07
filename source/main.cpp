@@ -138,10 +138,37 @@ int main() {
 
     else if (answer == "cd") {
         string newDescription;
-        cout << "Enter new description: " << endl;
-        cin.ignore();
-        getline(cin, newDescription);
-        user->getCurr()->setDescription(newDescription);
+	char choice;
+	cout << "Change description for (1)current or (2)child?" << endl;
+	cin >> choice;
+	    if(choice == '1') {
+		cout << "Enter new description for current: " << endl;
+		cin.ignore();
+        	getline(cin, newDescription);
+       	 	user->getCurr()->setDescription(newDescription);
+		cout << "Description updated" << endl;
+	    }
+
+	    else if(choice == '2') {
+		string targetName;
+		cout << "Enter the name of the child you want to change description for: " << endl;
+		cin.ignore();
+		getline(cin, targetName);
+		Component* target = user->getCurr()->getChild(targetName);
+		    if(target) {
+			cout << "Enter new description for child: " << endl;
+			cin.ignore();
+			getline(cin, newDescription);
+			target->setDescription(newDescription);
+			cout << "Description updated" << endl;
+	    	    }
+		    else {
+			cout << "Invalid name of child" << endl;
+		    }
+	    }
+	    else {
+		cout << "Invalid Choice" << endl;
+	    }
     }
 
     else if (answer == "due") {
