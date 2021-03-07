@@ -170,7 +170,7 @@ void TaskList::remove(string task)
             return;
         }
     }
-    cout << "Task Not Found" << endl;
+    cout << "Task/list Not Found..." << endl;
 }
 
 void TaskList::setDone(bool status)
