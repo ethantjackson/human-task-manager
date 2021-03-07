@@ -48,7 +48,7 @@ public:
 	//void TaskListify(TaskList*, string);
 
 	// virtual int num_children() { return contents.size(); }
-
+	Component* getChild(string targetName);
 	TaskList* getParent();
 	// virtual Component* get_child(int index) { return contents.at(index); }
 };

@@ -344,3 +344,13 @@ void TaskList::info() {
 //     contents.push_back(task);
 //     contents.at(contents.size() - 1)->add(newTask);
 // }
+
+Component* TaskList::getChild(string targetName) {
+    for(auto c : contents) {
+	if(c->getTitle() == targetName) {	
+	    return c;
+	}
+    }
+    return nullptr;
+}
+

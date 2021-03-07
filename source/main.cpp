@@ -49,12 +49,33 @@ int main() {
     }
 
     else if (answer == "i") {
-        user->getCurr()->info();
+        char opt;
+	cout << "Enter whether you want info for (1)current or (2)child: " << endl;
+	cin >> opt;
+	if(opt == '1') {
+	    user->getCurr()->info();
+	}
+	else if(opt == '2') {
+	    string targetName;
+	    cout << "Enter the name of the task you want to find the info for: " << endl;
+	    cin.ignore();
+	    getline(cin, targetName);
+	    	Component* target = user->getCurr()->getChild(targetName);
+		if(target) {
+		    target->info();
+		}
+		else {
+		    cout << "Invalid name of task" << endl;
+		}
+	}
+	else {
+	    cout << "Invalid Choice" << endl;
+	}
     }
 
     else if (answer == "sd") {
         char choice;
-        cout << "Is this task list done?(y/n) ";
+        cout << "Is this task list done? (y/n) ";
         cin >> choice;
         cout << endl;
         if (choice == 'y') {
