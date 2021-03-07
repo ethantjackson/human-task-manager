@@ -148,7 +148,6 @@ int main() {
        	 	user->getCurr()->setDescription(newDescription);
 		cout << "Description updated" << endl;
 	    }
-
 	    else if(choice == '2') {
 		string targetName;
 		cout << "Enter the name of the child you want to change description for: " << endl;
@@ -157,7 +156,6 @@ int main() {
 		Component* target = user->getCurr()->getChild(targetName);
 		    if(target) {
 			cout << "Enter new description for child: " << endl;
-			cin.ignore();
 			getline(cin, newDescription);
 			target->setDescription(newDescription);
 			cout << "Description updated" << endl;
@@ -173,10 +171,32 @@ int main() {
 
     else if (answer == "due") {
         string newDueDate;
-        cout << "Enter new due date " << endl;
-        cin.ignore();
-        getline(cin, newDueDate);
-        user->getCurr()->setDueDate(newDueDate);
+	char choice;
+	cout << "Change due date for (1)current or (2)child?" << endl;
+	cin >> choice;
+	    if(choice == '1') {
+        	cout << "Enter new due date " << endl;
+		cin.ignore();
+        	getline(cin, newDueDate);
+        	user->getCurr()->setDueDate(newDueDate);
+		cout << "Due date updated" << endl;
+	    }
+	    else if(choice == '2') {
+		string targetName;
+		cout << "Enter the name of the child you want to change the due date for: " << endl;
+		cin.ignore();
+		getline(cin, targetName);
+		Component* target = user->getCurr()->getChild(targetName);
+		    if(target) {
+			cout << "Enter new due date for child: " << endl;
+			getline(cin, newDueDate);
+			target->setDueDate(newDueDate);
+			cout << "Due date updated" << endl;
+		    }
+	    }
+	    else {
+		cout << "Invalid Choice" << endl;
+	    }
     }
 
     else if (answer == "a") {
