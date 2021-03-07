@@ -43,9 +43,9 @@
  
 >![Composite Diagram (5)](https://user-images.githubusercontent.com/71403787/110257723-f25b1280-7f53-11eb-9ba9-d9bae1f42860.jpg)
 
- * Singleton: The Singleton design pattern is used to implement the UserControl class. UserControl manages the Users of Human Task Manager, and signIn() conducts the login process when the application is running. Regarding the User class, the homeList holds the User’s entire list of tasks, while currList is used in conjunction with the navigate function to explore and manipulate the User’s different sub-tasks.
+ * Factory Design Pattern: The factory design pattern is implemented through the InitFactory class. Upon starting the application or logging into a new user, UserControl calls on the InitFactory to parse the appropriate user's save file and build the user's task/task list hierarchy.
 
->![Singleton Diagram (3)](https://user-images.githubusercontent.com/57571449/108030581-5721ed80-6fe4-11eb-83df-3bb20ad241d0.png)
+>![FactoryPattern](https://user-images.githubusercontent.com/71403787/110258695-bfffe400-7f58-11eb-8013-ba92295c00d3.jpg)
 
  > ## Phase III
  > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
