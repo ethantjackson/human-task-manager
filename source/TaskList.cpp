@@ -354,3 +354,15 @@ Component* TaskList::getChild(string targetName) {
     return nullptr;
 }
 
+vector<string> TaskList::getRootPath() {
+    if (parentList) {
+        vector<string> path = parentList->getRootPath();
+        path.push_back(title);
+        return path;
+    }
+    else {
+        vector<string> path(0);
+        return path;
+    }
+}
+

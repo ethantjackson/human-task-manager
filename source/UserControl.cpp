@@ -31,6 +31,7 @@ UserControl::UserControl() {
 		sfile.close();
 	}
 	curr = homeList;
+	log();
 }
 
 void UserControl::navigate() {
@@ -112,8 +113,10 @@ void UserControl::reset()
 			homeList = init->load(data);
 		}
    		sfile.close();
-	}
+	}			
 	curr = homeList;
+	while(!saves.empty()) saves.pop();
+	log();
 }
 
 void UserControl::login()
@@ -187,4 +190,30 @@ void UserControl::login()
 			}
 		}
 	}
+}
+
+void UserControl::log() {
+	string logData = homeList->save();
+	saves.push(make_pair(logData,curr->getRootPath()));
+}
+
+void UserControl::undo() {
+	if (saves.size() > 1) {
+		saves.pop();
+		delete homeList;
+		homeList = new TaskList("Home List", nullptr);
+		homeList = init->load(saves.top().first);
+		curr = findPrevCurr(saves.top().second); // find curr
+	}
+	else {
+		cout << "Cannot Undo Further." << endl;
+	}
+}
+
+TaskList* UserControl::findPrevCurr(vector<string> path) {
+	TaskList* curr = homeList;
+	for (auto s : path) {
+		curr = static_cast<TaskList*>(curr->getChild(s));
+	}
+	return curr;
 }
