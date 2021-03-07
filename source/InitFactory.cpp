@@ -6,6 +6,7 @@ InitFactory::InitFactory() {
 
 TaskList* InitFactory::load(string data)
 {
+    root = new TaskList("root", nullptr);
     stringstream ss(data);
     string info;
     string token;

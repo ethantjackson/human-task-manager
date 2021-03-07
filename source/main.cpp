@@ -17,6 +17,7 @@ void help()
         cout << "    q: quit" << endl;
         cout << "    s: save" << endl;
         cout << "    u: undo last action" << endl;
+		cout << "    z: redo" << endl;
         cout << "    l: login to new user" << endl;
 }
 
@@ -36,6 +37,10 @@ int main() {
 		else if (answer == "u") {
 			cout << "Undoing...\n";
 			user->undo();
+		}
+		else if (answer == "z") {
+			cout << "Redoing...\n";
+			user->redo();
 		}
 		else if (answer == "l") {
 			user->save();
