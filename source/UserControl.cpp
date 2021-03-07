@@ -199,6 +199,7 @@ void UserControl::log() {
 
 void UserControl::undo() {
 	if (saves.size() > 1) {
+		redos.push(saves.top());
 		saves.pop();
 		delete homeList;
 		homeList = new TaskList("Home List", nullptr);
@@ -207,6 +208,19 @@ void UserControl::undo() {
 	}
 	else {
 		cout << "Cannot Undo Further." << endl;
+	}
+}
+void UserControl::redo() {
+	if (redos.size() > 0) {
+		saves.push(redos.top());
+		redos.pop();
+		delete homeList;
+		homeList = new TaskList("Home List", nullptr);
+		homeList = init->load(saves.top().first);
+		curr = findPrevCurr(saves.top().second); // find curr
+	}
+	else {
+		cout << "Cannot Redo Further." << endl;
 	}
 }
 

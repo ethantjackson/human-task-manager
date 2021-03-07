@@ -16,6 +16,7 @@ private:
 	TaskList* homeList;
 	TaskList* curr;
 	stack<pair<string,vector<string>>> saves;
+	stack<pair<string,vector<string>>> redos;
 	string username = "none";
 
 	vector<pair<string,string>> users;
@@ -36,5 +37,6 @@ public:
 	void login();
 	void log();
 	void undo();
+	void redo();
 };
 
