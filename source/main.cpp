@@ -60,13 +60,13 @@ int main() {
 	    cout << "Enter the name of the task you want to find the info for: " << endl;
 	    cin.ignore();
 	    getline(cin, targetName);
-	    	Component* target = user->getCurr()->getChild(targetName);
-		if(target) {
+	    Component* target = user->getCurr()->getChild(targetName);
+	    	if(target) {
 		    target->info();
-		}
-		else {
+	    	}
+	    	else {
 		    cout << "Invalid name of task" << endl;
-		}
+	        }	
 	}
 	else {
 	    cout << "Invalid Choice" << endl;
@@ -75,15 +75,57 @@ int main() {
 
     else if (answer == "sd") {
         char choice;
-        cout << "Is this task list done? (y/n) ";
+	char opt;
+        cout << "Enter whether you want to set done for (1)current or (2)child:  " << endl;
         cin >> choice;
         cout << endl;
-        if (choice == 'y') {
-            user->getCurr()->setDone(true);
-        }
-        else if (choice == 'n') {
-            user->getCurr()->setDone(false);
-        }
+        if (choice == '1') {
+	    cout << "Is this current list done? (y/n) " << endl;
+	    cin >> opt;
+	    if (opt == 'y') {
+                user->getCurr()->setDone(true);
+		cout << "Current task has been set to done" << endl;
+            }
+	    else if (opt == 'n') {
+		user->getCurr()->setDone(false);
+		cout << "Current task has been set to not done" << endl;
+	    }
+	    else {
+		cout << "Invalid option" << endl;
+	    }
+	}
+	else if (choice == '2') {
+	    cout << "Is this child list done? (y/n) " << endl;
+	    cin >> opt;
+	    if (opt == 'y') {
+		string targetName;
+		cout << "Enter the name of the child list you want to have set done: " << endl;
+		cin.ignore();
+		getline(cin, targetName);
+		Component* target = user->getCurr()->getChild(targetName);
+		    if(target) {
+			target->setDone(true);
+			cout << "Child list has been set to done" << endl;
+		    }
+		    else {
+			cout << "Invalid name of child list" << endl;
+		    }
+	    }
+	    else if (opt == 'n') {
+		string targetName;
+		cout << "Enter the name of the child list you want to have set as not done: " << endl;
+		cin.ignore();
+		getline(cin, targetName);
+		Component* target = user->getCurr()->getChild(targetName);
+		    if(target) {
+			target->setDone(false);
+			cout << "Child list has been set to not done" << endl;
+	    	    }
+		    else {
+			cout << "Invalid name of child list" << endl;
+		    }
+	    }
+	}		
         else {
             cout << "Invalid Choice" << endl;
         }
