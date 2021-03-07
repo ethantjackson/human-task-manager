@@ -187,12 +187,12 @@ int main() {
 		cin.ignore();
 		getline(cin, targetName);
 		Component* target = user->getCurr()->getChild(targetName);
-		    if(target) {
-			cout << "Enter new due date for child: " << endl;
-			getline(cin, newDueDate);
-			target->setDueDate(newDueDate);
-			cout << "Due date updated" << endl;
-		    }
+		if(target) {
+		    cout << "Enter new due date for child: " << endl;
+		    getline(cin, newDueDate);
+		    target->setDueDate(newDueDate);
+		    cout << "Due date updated" << endl;
+		}
 	    }
 	    else {
 		cout << "Invalid Choice" << endl;
@@ -251,7 +251,7 @@ int main() {
     else if (answer == "r") {
         string target;
         char choice;
-        cout << "Would you like to (1) remove a subtask/list or (2) remove all contents? ";
+        cout << "Would you like to (1) remove a subtask/list or (2) remove all contents?" << endl;
         cin >> choice;
         if (choice == '1') {
           cout << "Specify the subtask/list to remove: ";
@@ -264,18 +264,46 @@ int main() {
 	  cout << "Clearing Contents...\n";
           user->getCurr()->removeAll();
         }
+	else {
+	  cout << "Invalid Choice" << endl;
+	}
     }
 
     else if (answer == "re") {
         string newName;
-        cout << "Enter new title: " << endl;
-        cin.ignore();
-        getline(cin, newName);
-        user->getCurr()->rename(newName);
+	char choice;
+	cout << "Would you like to rename the (1)current or (2)child?" << endl;
+	cin >> choice;
+	if (choice == '1') {
+            cout << "Enter new title: " << endl;
+            cin.ignore();
+            getline(cin, newName);
+            user->getCurr()->rename(newName);
+	    cout << "Current has been renamed" << endl;
+    	}
+	else if (choice == '2') {
+	    string targetName;
+	    cout << "Enter name of child to be renamed: " << endl;
+	    cin.ignore();
+	    getline(cin, targetName);
+	    Component* target = user->getCurr()->getChild(targetName);
+	    if(target) {
+		cout << "Enter new title: " << endl;
+		getline(cin, newName);
+		target->rename(newName);
+		cout << "Child has been renamed" << endl;
+	    }
+	    else {
+		cout << "Invalid name of child" << endl;
+	    }
+	}
+	else {
+	    cout << "Invalid Choice" << endl;	
+	}
     }
 
-    else{
-        cout << "Invalid Action" << endl;
+    else {
+	cout << "Invalid Action" << endl;
     }
 
 	  cout << endl;
