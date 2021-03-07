@@ -46,8 +46,9 @@ public:
   virtual bool validCurrTarget() {return true;}
 	virtual void info();
 	//void TaskListify(TaskList*, string);
-
+	
 	// virtual int num_children() { return contents.size(); }
+	vector<string> getRootPath();
 	Component* getChild(string targetName);
 	TaskList* getParent();
 	// virtual Component* get_child(int index) { return contents.at(index); }

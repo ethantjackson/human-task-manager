@@ -16,7 +16,7 @@ void help()
         cout << "    n: navigate task lists" << endl;
         cout << "    q: quit" << endl;
         cout << "    s: save" << endl;
-        cout << "    u: undo to last save" << endl;
+        cout << "    u: undo last action" << endl;
         cout << "    l: login to new user" << endl;
 }
 
@@ -28,12 +28,14 @@ int main() {
 	while (answer != "q") {
 		if (answer == "n") {
 			user->navigate();
+			user->log();
 		}
 		else if (answer == "s") {
 			user->save();
 		}
 		else if (answer == "u") {
-			user->reset();
+			cout << "Undoing...\n";
+			user->undo();
 		}
 		else if (answer == "l") {
 			user->save();
@@ -81,10 +83,12 @@ int main() {
 				if (opt == 'y') {
 					user->getCurr()->setDone(true);
 					cout << "Current task list is done!" << endl;
+					user->log();
 				}
 				else if (opt == 'n') {
 					user->getCurr()->setDone(false);
 					cout << "Current task list is not done." << endl;
+					user->log();
 				}
 				else {
 					cout << "Invalid Option..." << endl;
@@ -102,10 +106,12 @@ int main() {
 					if (opt == 'y') {
 						user->getCurr()->getChild(targetName)->setDone(true);
 						cout << "Subtask/list is done!" << endl;
+						user->log();
 					}
 					else if (opt == 'n') {
 						user->getCurr()->getChild(targetName)->setDone(false);
 						cout << "Subtask/list is not done." << endl;
+						user->log();
 					}
 					else {
 						cout << "Invalid Option..." << endl;
@@ -136,6 +142,7 @@ int main() {
 				getline(cin, newDescription);
 				user->getCurr()->setDescription(newDescription);
 				cout << "Description updated." << endl;
+				user->log();
 			}
 			else if(choice == '2') {
 				string targetName;
@@ -148,6 +155,7 @@ int main() {
 					getline(cin, newDescription);
 					target->setDescription(newDescription);
 					cout << "Description updated." << endl;
+					user->log();
 				}
 				else {
 					cout << "Task/list Not Found..." << endl;
@@ -169,6 +177,7 @@ int main() {
 				getline(cin, newDueDate);
 				user->getCurr()->setDueDate(newDueDate);
 				cout << "Due date updated." << endl;
+				user->log();
 			}
 			else if(choice == '2') {
 				string targetName;
@@ -181,6 +190,10 @@ int main() {
 					getline(cin, newDueDate);
 					target->setDueDate(newDueDate);
 					cout << "Due date updated." << endl;
+					user->log();
+				}
+				else {
+					cout << "Task/list Not Found..." << endl;
 				}
 			}
 			else {
@@ -212,6 +225,8 @@ int main() {
 				data+="0,</tl>,";
 				//cout << "data: \"" << data << "\"\n";
 				user->getCurr()->appendTaskList(data);
+				cout << "Adding TaskList...\n";
+				user->log();
 			break;
 			
 			case '2':
@@ -229,6 +244,8 @@ int main() {
 				data+="0,</t>,";
 				//cout << "data: \"" << data << "\"\n";
 				user->getCurr()->appendTask(data);
+				cout << "Adding Task...\n";
+				user->log();
 			break;
 
 			default:
@@ -250,12 +267,14 @@ int main() {
 				if (targetChild) {
 					cout << "Removing...\n";
 					user->getCurr()->remove(target);
+					user->log();
 				}
 				else cout << "Task/list not found...\n";
 			}
 			else if (choice == '2') {
 				cout << "Clearing Contents...\n";
 				user->getCurr()->removeAll();
+				user->log();
 			}
 			else {
 				cout << "Invalid Choice..." << endl;
@@ -273,6 +292,7 @@ int main() {
 				getline(cin, newName);
 				user->getCurr()->rename(newName);
 				cout << "Current list has been renamed." << endl;
+				user->log();
 			}
 			else if (choice == '2') {
 				string targetName;
@@ -285,6 +305,7 @@ int main() {
 					getline(cin, newName);
 					target->rename(newName);
 					cout << "Subtasklist has been renamed." << endl;
+					user->log();
 				}
 				else {
 					cout << "Task/list not found..." << endl;
