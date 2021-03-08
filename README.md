@@ -39,7 +39,7 @@
  
  ## Screenshots
  > Screenshots of the input/output after running your application
- > Logging into the application:
+ > * Logging into the application:
  > ![image](https://user-images.githubusercontent.com/71403787/110260130-d5c4d780-7f5f-11eb-84f5-bcc4fcd950dd.png)
 
  ## Installation/Usage
