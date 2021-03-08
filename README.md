@@ -62,13 +62,14 @@
 * "u" and "z" can be used to undo and redo actions, respectively:
 
 > ![image](https://user-images.githubusercontent.com/71403787/110260540-8d0e1e00-7f61-11eb-8b1f-0bc7f8b5dd01.png) ![image](https://user-images.githubusercontent.com/71403787/110260551-98614980-7f61-11eb-96b2-933843721b1e.png)
+> 
 > (The above images follow the remove action in the previos step)
 
-* "l" allows nwe users to login. As shown, user data is saved for future logins:
+* "l" allows new users to login. As shown, user data is saved for future logins:
 
 > ![image](https://user-images.githubusercontent.com/71403787/110260693-1de4f980-7f62-11eb-880f-52b03f0bd461.png)
 
-* press "q" to quit the application (user data is saved automatically for future use):
+* press "q" to quit the application (user data is saved automatically for future use, and can be saved anytime with "s"):
 
 > ![image](https://user-images.githubusercontent.com/71403787/110260726-3e14b880-7f62-11eb-83a3-7c9b8d9ccf9e.png)
 
