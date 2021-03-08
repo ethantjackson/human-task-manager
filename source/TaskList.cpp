@@ -59,6 +59,7 @@ int TaskList::countSubTasks()
     }
     return numSubs;
 }
+
 int TaskList::countSubTaskLists() {
     int numSubs = 0;
     ++numSubs;
@@ -115,10 +116,8 @@ void TaskList::load(string data)
                 info += (token + ",");
                 if (token == "</tl>") --endListCount;
                 else if (token == "<tl>") ++endListCount;
-                //cout << "tl(r) token: \"" << token << "\"\n";
             }
             info += "</tl>,";
-            //cout << "tl(r) info: \"" << info << "\"\n";
             appendTaskList(info);
         }
         if (token == "<t>") {
@@ -126,10 +125,8 @@ void TaskList::load(string data)
             while (token != "</t>") {
                 getline(ss, token, ',');
                 info += (token + ",");
-                //cout << "t(r) token: \"" << token << "\"\n";
             }
             info += "</t>,";
-            //cout << "t(r) info: \"" << info << "\"\n";
             appendTask(info);
         }
     }
@@ -140,6 +137,7 @@ void TaskList::appendTaskList(string saveInfo)
     contents.push_back(new TaskList("tmp", this));
     static_cast<TaskList*>(contents.at(contents.size() - 1))->load(saveInfo);
 }
+
 void TaskList::appendTask(string saveInfo) {
     stringstream ss(saveInfo);
     string title, dueDate, description, token;
