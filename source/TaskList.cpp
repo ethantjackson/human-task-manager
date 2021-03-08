@@ -76,13 +76,13 @@ int TaskList::getLevel()
 
 string TaskList::save()
 {
-    string sstring = "<tl>," + title + "," + dueDate + "," + description + ",";
-    if (done) sstring += "1,";
-    else sstring += "0,";
+    string sstring = "<tl>`" + title + "`" + dueDate + "`" + description + "`";
+    if (done) sstring += "1`";
+    else sstring += "0`";
     for (auto c : contents) {
         sstring += c->save();
     }
-    sstring += "</tl>,";
+    sstring += "</tl>`";
     return sstring;
 }
 
@@ -93,42 +93,42 @@ void TaskList::load(string data)
     string token;
     int endListCount;
 
-    getline(ss, token, ','); // ignore first <tl>
+    getline(ss, token, '`'); // ignore first <tl>
 
-    getline(ss, token, ',');
+    getline(ss, token, '`');
     rename(token);
-    getline(ss, token, ',');
+    getline(ss, token, '`');
     setDueDate(token);
-    getline(ss, token, ',');
+    getline(ss, token, '`');
     setDescription(token);
-    getline(ss, token, ',');
+    getline(ss, token, '`');
     if (token == "1") setDone(true);
     else setDone(false);
 
-    while (getline(ss, token, ',')) {
+    while (getline(ss, token, '`')) {
         if (token == "<tl>") {
             //append new task list
             endListCount = 1;
-            info = token + ",";
+            info = token + "`";
             while (endListCount != 0) {
-                getline(ss, token, ',');
-                info += (token + ",");
+                getline(ss, token, '`');
+                info += (token + "`");
                 if (token == "</tl>") --endListCount;
                 else if (token == "<tl>") ++endListCount;
                 //cout << "tl(r) token: \"" << token << "\"\n";
             }
-            info += "</tl>,";
+            info += "</tl>`";
             //cout << "tl(r) info: \"" << info << "\"\n";
             appendTaskList(info);
         }
         if (token == "<t>") {
-            info = token + ",";
+            info = token + "`";
             while (token != "</t>") {
-                getline(ss, token, ',');
-                info += (token + ",");
+                getline(ss, token, '`');
+                info += (token + "`");
                 //cout << "t(r) token: \"" << token << "\"\n";
             }
-            info += "</t>,";
+            info += "</t>`";
             //cout << "t(r) info: \"" << info << "\"\n";
             appendTask(info);
         }
@@ -144,12 +144,12 @@ void TaskList::appendTask(string saveInfo) {
     string title, dueDate, description, token;
     bool done;
 
-    getline(ss, token, ','); // ignore first <t>
+    getline(ss, token, '`'); // ignore first <t>
 
-    getline(ss, title, ',');
-    getline(ss, dueDate, ',');
-    getline(ss, description, ',');
-    getline(ss, token, ',');
+    getline(ss, title, '`');
+    getline(ss, dueDate, '`');
+    getline(ss, description, '`');
+    getline(ss, token, '`');
     if (token == "1") done = true;
     else done = false;
 

@@ -51,10 +51,10 @@ int Task::getLevel()
 
 string Task::save()
 {
-    string data = "<t>," + title + "," + dueDate + "," + description + ",";
-    if (done) data += "1,";
-    else data += "0,";
-    data += "</t>,";
+    string data = "<t>`" + title + "`" + dueDate + "`" + description + "`";
+    if (done) data += "1`";
+    else data += "0`";
+    data += "</t>`";
     return data;
 }
 
