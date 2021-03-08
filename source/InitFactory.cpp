@@ -1,11 +1,11 @@
 #include "../header/InitFactory.h"
 
 InitFactory::InitFactory() {
-    //root = new TaskList("Home List", nullptr);
+
 }
 
 InitFactory::~InitFactory() {
-    //delete root;
+
 }
 
 TaskList* InitFactory::load(string data)
@@ -38,10 +38,10 @@ TaskList* InitFactory::load(string data)
                 info += (token + ",");
                 if (token == "</tl>") --endListCount;
                 else if (token == "<tl>") ++endListCount;
-                //cout << "tl token: \"" << token << "\"\n";
+
             }
             info += "</tl>,";
-            //cout << "tl info: \"" << info << "\"\n";
+
             root->appendTaskList(info);
         }
         if (token == "<t>") {
@@ -49,10 +49,10 @@ TaskList* InitFactory::load(string data)
             while (token != "</t>") {
                 getline(ss, token, ',');
                 info += (token + ",");
-                //cout << "t token: \"" << token << "\"\n";
+
             }
             info += "</t>,";
-            //cout << "t info: \"" << info << "\"\n";
+
             root->appendTask(info);
         }
     }
