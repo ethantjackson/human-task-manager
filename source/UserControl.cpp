@@ -9,8 +9,8 @@ UserControl::UserControl() {
 	if (sfile.is_open()) {
 		string username;
 		string password;
-		while (getline(sfile, username, ',')) {
-			getline(sfile, password, ',');
+		while (getline(sfile, username, '`')) {
+			getline(sfile, password, '`');
 			users.push_back(make_pair(username, password));
 		}
 		sfile.close();
@@ -97,7 +97,7 @@ void UserControl::saveUsers() {
         sfile.open("Users.txt");
         if (sfile.is_open()) {
                 for (auto p : users) {
-                        sfile << p.first << "," << p.second << ",";
+                        sfile << p.first << "`" << p.second << "`";
                 }
                 sfile.close();
         }

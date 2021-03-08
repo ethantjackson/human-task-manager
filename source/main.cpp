@@ -216,36 +216,36 @@ int main() {
 			switch (choice)
 			{
 			case '1':
-				data+="<tl>,";
+				data+="<tl>`";
 				cout << "Enter New TaskList Name: ";
 				cin.ignore();
 				getline(cin, tmp);
-				data+=(tmp+',');
+				data+=(tmp+'`');
 				cout << "Enter New TaskList Due Date (press ENTER if none): ";
 				getline(cin, tmp);
-				data+=(tmp+',');
+				data+=(tmp+'`');
 				cout << "Enter New TaskList Description (press ENTER if none): ";
 				getline(cin, tmp);
-				data+=(tmp+',');
-				data+="0,</tl>,";
+				data+=(tmp+'`');
+				data+="0`</tl>`";
 				user->getCurr()->appendTaskList(data);
 				cout << "Adding TaskList...\n";
 				user->log();
 			break;
 			
 			case '2':
-				data+="<t>,";
+				data+="<t>`";
 				cout << "Enter New Task Name: ";
 				cin.ignore();
 				getline(cin, tmp);
-				data+=(tmp+',');
+				data+=(tmp+'`');
 				cout << "Enter New Task Due Date (press ENTER if none): ";
 				getline(cin, tmp);
-				data+=(tmp+',');
+				data+=(tmp+'`');
 				cout << "Enter New Task Description (press ENTER if none): ";
 				getline(cin, tmp);
-				data+=(tmp+',');
-				data+="0,</t>,";
+				data+=(tmp+'`');
+				data+="0`</t>`";
 				user->getCurr()->appendTask(data);
 				cout << "Adding Task...\n";
 				user->log();
