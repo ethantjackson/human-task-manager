@@ -22,15 +22,10 @@ public:
 	virtual void display() = 0;
 	virtual void setDescription(string) = 0;
 	virtual void setDueDate(string) = 0;
-	// virtual char run() = 0;
-	// virtual void add(string) = 0;
-	// virtual void remove() = 0;
 	virtual void rename(string) = 0;
   virtual bool validCurrTarget() = 0;
 	virtual void info() = 0;
-	//Iterator functions
-	// virtual int num_children() = 0;
-	// virtual Component* get_child(int index) = 0;
+
 };
 
 #endif

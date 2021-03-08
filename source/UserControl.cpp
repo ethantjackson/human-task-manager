@@ -26,12 +26,18 @@ UserControl::UserControl() {
 			data += title;
 		}
 		if (data != "") {
+			delete homeList;
 			homeList = init->load(data);
 		}
 		sfile.close();
 	}
 	curr = homeList;
 	log();
+}
+
+UserControl::~UserControl() {
+    delete init;
+    delete homeList;
 }
 
 void UserControl::navigate() {
@@ -110,6 +116,7 @@ void UserControl::reset()
 			data += token;
 		}
 		if (data != "") {
+			delete homeList;;
 			homeList = init->load(data);
 		}
    		sfile.close();
@@ -195,6 +202,7 @@ void UserControl::login()
 void UserControl::log() {
 	string logData = homeList->save();
 	saves.push(make_pair(logData,curr->getRootPath()));
+	while (!redos.empty()) redos.pop();
 }
 
 void UserControl::undo() {
@@ -202,7 +210,6 @@ void UserControl::undo() {
 		redos.push(saves.top());
 		saves.pop();
 		delete homeList;
-		homeList = new TaskList("Home List", nullptr);
 		homeList = init->load(saves.top().first);
 		curr = findPrevCurr(saves.top().second); // find curr
 	}
@@ -215,7 +222,6 @@ void UserControl::redo() {
 		saves.push(redos.top());
 		redos.pop();
 		delete homeList;
-		homeList = new TaskList("Home List", nullptr);
 		homeList = init->load(saves.top().first);
 		curr = findPrevCurr(saves.top().second); // find curr
 	}
