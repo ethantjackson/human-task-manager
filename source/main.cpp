@@ -228,7 +228,6 @@ int main() {
 				getline(cin, tmp);
 				data+=(tmp+',');
 				data+="0,</tl>,";
-				//cout << "data: \"" << data << "\"\n";
 				user->getCurr()->appendTaskList(data);
 				cout << "Adding TaskList...\n";
 				user->log();
@@ -247,7 +246,6 @@ int main() {
 				getline(cin, tmp);
 				data+=(tmp+',');
 				data+="0,</t>,";
-				//cout << "data: \"" << data << "\"\n";
 				user->getCurr()->appendTask(data);
 				cout << "Adding Task...\n";
 				user->log();

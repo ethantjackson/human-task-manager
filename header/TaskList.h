@@ -12,7 +12,7 @@ private:
 	string dueDate;
 	string description;
 	bool done;
-	// void help();
+
 
 
 public:
@@ -34,23 +34,19 @@ public:
 
 	virtual void setDone(bool);
 	virtual void display();
-	//virtual void getDescription();
 	virtual void setDescription(string);
-	//virtual void getDueDate();
 	virtual void setDueDate(string);
-	// virtual char run();
-	// void add(string);
 	void removeAll();
 	void remove(string);
 	virtual void rename(string);
   virtual bool validCurrTarget() {return true;}
 	virtual void info();
-	//void TaskListify(TaskList*, string);
+
 	
-	// virtual int num_children() { return contents.size(); }
+
 	vector<string> getRootPath();
 	Component* getChild(string targetName);
 	TaskList* getParent();
-	// virtual Component* get_child(int index) { return contents.at(index); }
+
 };
 
