@@ -12,6 +12,7 @@ private:
 
 public:
 	InitFactory();
+	~InitFactory();
 	TaskList* load(string data);
 };
 

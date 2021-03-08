@@ -24,9 +24,7 @@ private:
 
 public:
 	UserControl();
-	~UserControl() {
-		delete homeList;
-	}
+	~UserControl();
 	TaskList* getCurr() {return this->curr;}
 	TaskList* findPrevCurr(vector<string>);
 	void setCurr(TaskList* newCurr) {this->curr = newCurr;}

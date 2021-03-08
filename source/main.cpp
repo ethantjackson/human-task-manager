@@ -333,5 +333,7 @@ int main() {
 	cout << "\nSaving...\n\n";
 	user->save();
 
+	delete user;	
+
 	return 0;
 }
