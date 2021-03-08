@@ -1,7 +1,11 @@
 #include "../header/InitFactory.h"
 
 InitFactory::InitFactory() {
-    root = new TaskList("Home List", nullptr);
+    //root = new TaskList("Home List", nullptr);
+}
+
+InitFactory::~InitFactory() {
+    //delete root;
 }
 
 TaskList* InitFactory::load(string data)
