@@ -39,8 +39,39 @@
  
  ## Screenshots
  > Screenshots of the input/output after running your application
- > * Logging into the application:
+  * Logging into the application:
+  
  > ![image](https://user-images.githubusercontent.com/71403787/110260130-d5c4d780-7f5f-11eb-84f5-bcc4fcd950dd.png)
+ 
+ * "h" displays application usage options:
+
+> ![image](https://user-images.githubusercontent.com/71403787/110260269-42d86d00-7f60-11eb-86e1-46edd2eaf682.png)
+
+* "a" allows users to add Tasks or TaskLists:
+
+>![image](https://user-images.githubusercontent.com/71403787/110260348-a2cf1380-7f60-11eb-96b5-6b8f6dfc1df6.png)
+
+* "n" allows users to navigate their task hierarchy:
+
+> ![image](https://user-images.githubusercontent.com/71403787/110260455-2e48a480-7f61-11eb-8115-f411253ed6d7.png)
+
+* "r" allows users to remove Tasks or TaskLists from the current list:
+
+> ![image](https://user-images.githubusercontent.com/71403787/110260508-6f40b900-7f61-11eb-8560-3e7ff29256f3.png)
+
+* "u" and "z" can be used to undo and redo actions, respectively:
+
+> ![image](https://user-images.githubusercontent.com/71403787/110260540-8d0e1e00-7f61-11eb-8b1f-0bc7f8b5dd01.png) ![image](https://user-images.githubusercontent.com/71403787/110260551-98614980-7f61-11eb-96b2-933843721b1e.png)
+> (The above images follow the remove action in the previos step)
+
+* "l" allows nwe users to login. As shown, user data is saved for future logins:
+
+> ![image](https://user-images.githubusercontent.com/71403787/110260693-1de4f980-7f62-11eb-880f-52b03f0bd461.png)
+
+* press "q" to quit the application (user data is saved automatically for future use):
+
+> ![image](https://user-images.githubusercontent.com/71403787/110260726-3e14b880-7f62-11eb-83a3-7c9b8d9ccf9e.png)
+
 
  ## Installation/Usage
  > Instructions on installing and running your application
