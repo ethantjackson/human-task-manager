@@ -51,6 +51,11 @@
 
 >![image](https://user-images.githubusercontent.com/71403787/110260348-a2cf1380-7f60-11eb-96b5-6b8f6dfc1df6.png)
 
+* "d" displays the users current list:
+
+> ![image](https://user-images.githubusercontent.com/71403787/110260920-f9d5e800-7f62-11eb-8a80-b0f61ea7923c.png)
+
+
 * "n" allows users to navigate their task hierarchy:
 
 > ![image](https://user-images.githubusercontent.com/71403787/110260455-2e48a480-7f61-11eb-8115-f411253ed6d7.png)
