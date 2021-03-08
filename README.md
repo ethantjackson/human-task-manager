@@ -37,9 +37,8 @@
  > * Complete the sections below (i.e. Screenshots, Installation/Usage, Testing)
  > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Kanban board. 
  
- ## Screenshots
- > Screenshots of the input/output after running your application
-  * Logging into the application:
+ ## Screenshot
+  * Logging into the application (preexisting users can also login using their account credentials):
   
  > ![image](https://user-images.githubusercontent.com/71403787/110260130-d5c4d780-7f5f-11eb-84f5-bcc4fcd950dd.png)
  
@@ -80,7 +79,8 @@
 
 
  ## Installation/Usage
- > Instructions on installing and running your application
+ * The application is run completely through the command line. You can use cmake to compile the program. The application can then be run using the "task" executable, with "$./task". 
+ 
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
  
