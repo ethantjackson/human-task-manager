@@ -145,25 +145,43 @@ int main() {
 				cout << "Enter new description: " << endl;
 				cin.ignore();
 				getline(cin, newDescription);
+				if((newDescription.find("<")!=string::npos) || (newDescription.find(">")!=string::npos) || (newDescription.find("`")!=string::npos))
+                                {
+                                        cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
+                                }
+				else {
 				user->getCurr()->setDescription(newDescription);
 				cout << "Description updated." << endl;
 				user->log();
+				}
 			}
 			else if(choice == '2') {
 				string targetName;
 				cout << "Enter the name of the subtask/list to be modified: " << endl;
 				cin.ignore();
 				getline(cin, targetName);
-				Component* target = user->getCurr()->getChild(targetName);
-				if(target) {
-					cout << "Enter new description: " << endl;
-					getline(cin, newDescription);
-					target->setDescription(newDescription);
-					cout << "Description updated." << endl;
-					user->log();
-				}
+				if((targetName.find("<")!=string::npos) || (targetName.find(">")!=string::npos) || (targetName.find("`")!=string::npos))
+                                {
+                                        cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
+                                }
 				else {
-					cout << "Task/list Not Found..." << endl;
+					Component* target = user->getCurr()->getChild(targetName);
+					if(target) {
+						cout << "Enter new description: " << endl;
+						getline(cin, newDescription);
+		                                if((newDescription.find("<")!=string::npos) || (newDescription.find(">")!=string::npos) || (newDescription.find("`")!=string::npos))
+                                		{
+                                        		cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
+                                		}
+						else {
+						target->setDescription(newDescription);
+						cout << "Description updated." << endl;
+						user->log();
+						}
+					}
+					else {
+						cout << "Task/list Not Found..." << endl;
+					}
 				}
 			}
 			else {
@@ -347,9 +365,15 @@ int main() {
 					if(target) {
 						cout << "Enter new title: " << endl;
 						getline(cin, newName);
+						if((newName.find("<")!=string::npos) || (newName.find(">")!=string::npos) || (newName.find("`")!=string::npos))
+                                		{
+                                        		cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
+                                		}
+						else {
 						target->rename(newName);
 						cout << "Subtasklist has been renamed." << endl;
 						user->log();
+						}
 					}
 					else {
 					cout << "Task/list not found..." << endl;
