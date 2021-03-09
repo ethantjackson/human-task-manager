@@ -213,37 +213,65 @@ int main() {
 			cout << "Would you like to add a: (1) TaskList or (2) Task? ";
 			cin >> choice; 
 			cout << endl;
-			switch (choice)
-			{
-			case '1':
-				data+="<tl>`";
-				cout << "Enter New TaskList Name: ";
-				cin.ignore();
-				getline(cin, tmp);
-				data+=(tmp+'`');
-				cout << "Enter New TaskList Due Date (press ENTER if none): ";
-				getline(cin, tmp);
-				data+=(tmp+'`');
-				cout << "Enter New TaskList Description (press ENTER if none): ";
-				getline(cin, tmp);
-				data+=(tmp+'`');
-				data+="0`</tl>`";
-				user->getCurr()->appendTaskList(data);
-				cout << "Adding TaskList...\n";
-				user->log();
-			break;
+			 switch (choice)
+                        {
+                        case '1':
+                                data+="<tl>`";
+                                cout << "Enter New TaskList Name: ";
+                                cin.ignore();
+                                getline(cin, tmp);
+                                if((tmp.find("<")!=string::npos) || (tmp.find(">")!=string::npos) || (tmp.find("`")!=string::npos))
+                                {
+                                        cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
+                                        break;
+                                }
+                                data+=(tmp+'`');
+                                cout << "Enter New TaskList Due Date (press ENTER if none): ";
+                                getline(cin, tmp);
+                                if((tmp.find("<")!=string::npos) || (tmp.find(">")!=string::npos) || (tmp.find("`")!=string::npos))                                {
+                                        cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
+                                        break;
+                                }
+                                data+=(tmp+'`');
+                                cout << "Enter New TaskList Description (press ENTER if none): ";
+                                getline(cin, tmp);
+                                if((tmp.find("<")!=string::npos) || (tmp.find(">")!=string::npos) || (tmp.find("`")!=string::npos))                                {
+                                        cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
+                                        break;
+                                }
+                                data+=(tmp+'`');
+                                data+="0`</tl>`";
+                                user->getCurr()->appendTaskList(data);
+                                cout << "Adding TaskList...\n";
+                                user->log();
+                        break;
 			
 			case '2':
 				data+="<t>`";
 				cout << "Enter New Task Name: ";
 				cin.ignore();
 				getline(cin, tmp);
+				if((tmp.find("<")!=string::npos) || (tmp.find(">")!=string::npos) || (tmp.find("`")!=string::npos))
+                                {
+                                        cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
+                                        break;
+                                }
 				data+=(tmp+'`');
 				cout << "Enter New Task Due Date (press ENTER if none): ";
 				getline(cin, tmp);
+				if((tmp.find("<")!=string::npos) || (tmp.find(">")!=string::npos) || (tmp.find("`")!=string::npos))
+                                {
+                                        cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
+                                        break;
+                                }
 				data+=(tmp+'`');
 				cout << "Enter New Task Description (press ENTER if none): ";
 				getline(cin, tmp);
+				if((tmp.find("<")!=string::npos) || (tmp.find(">")!=string::npos) || (tmp.find("`")!=string::npos))
+                                {
+                                        cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
+                                        break;
+                                }
 				data+=(tmp+'`');
 				data+="0`</t>`";
 				user->getCurr()->appendTask(data);
@@ -293,25 +321,39 @@ int main() {
 				cout << "Enter new title: " << endl;
 				cin.ignore();
 				getline(cin, newName);
+				if((newName.find("<")!=string::npos) || (newName.find(">")!=string::npos) || (newName.find("`")!=string::npos))
+                                {
+                                        cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
+                           
+                                }
+				else {
 				user->getCurr()->rename(newName);
 				cout << "Current list has been renamed." << endl;
 				user->log();
+				}
 			}
 			else if (choice == '2') {
 				string targetName;
 				cout << "Enter name of subtask/list to be renamed: " << endl;
 				cin.ignore();
 				getline(cin, targetName);
-				Component* target = user->getCurr()->getChild(targetName);
-				if(target) {
-					cout << "Enter new title: " << endl;
-					getline(cin, newName);
-					target->rename(newName);
-					cout << "Subtasklist has been renamed." << endl;
-					user->log();
-				}
-				else {
+                                if((targetName.find("<")!=string::npos) || (targetName.find(">")!=string::npos) || (targetName.find("`")!=string::npos))
+                                {
+                                        cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
+
+                                }
+                                else {
+					Component* target = user->getCurr()->getChild(targetName);
+					if(target) {
+						cout << "Enter new title: " << endl;
+						getline(cin, newName);
+						target->rename(newName);
+						cout << "Subtasklist has been renamed." << endl;
+						user->log();
+					}
+					else {
 					cout << "Task/list not found..." << endl;
+					}
 				}
 			}
 			else {
