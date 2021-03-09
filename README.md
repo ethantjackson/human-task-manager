@@ -16,11 +16,11 @@
 ## Class Diagrams
  * Composite Design Pattern: The composite design pattern is used to implement a hierarchy of tasks and task lists. The leaf Tasks and composite TaskLists inherit from a Component interface which defines shared functionality.
  
-![Composite Diagram (5)](https://user-images.githubusercontent.com/71403787/110257723-f25b1280-7f53-11eb-9ba9-d9bae1f42860.jpg)
+![Composite Diagram (4)](https://user-images.githubusercontent.com/71403787/110417177-ea7d9a00-8049-11eb-9da1-6a7f58428cb4.jpg)
 
  * Factory Design Pattern: The factory design pattern is implemented through the InitFactory class. Upon starting the application or logging into a new user, UserControl calls on the InitFactory to parse the appropriate user's save file and build the user's task/task list hierarchy.
 
-![FactoryPattern](https://user-images.githubusercontent.com/71403787/110258695-bfffe400-7f58-11eb-8013-ba92295c00d3.jpg)
+![FactoryPattern](https://user-images.githubusercontent.com/71403787/110417459-84dddd80-804a-11eb-87a9-c6be2380d027.jpg)
 
  > ## Phase III
  > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
