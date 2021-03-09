@@ -198,29 +198,48 @@ int main() {
 				cout << "Enter new due date: " << endl;
 				cin.ignore();
 				getline(cin, newDueDate);
+				if((newDueDate.find("<")!=string::npos) || (newDueDate.find(">")!=string::npos) || (newDueDate.find("`")!=string::npos))
+                                {
+                                        cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
+                                }
+				else {
 				user->getCurr()->setDueDate(newDueDate);
 				cout << "Due date updated." << endl;
 				user->log();
+				}
 			}
 			else if(choice == '2') {
 				string targetName;
 				cout << "Enter the name of the subtask/list to be modified: " << endl;
 				cin.ignore();
 				getline(cin, targetName);
-				Component* target = user->getCurr()->getChild(targetName);
-				if(target) {
-					cout << "Enter new due date: " << endl;
-					getline(cin, newDueDate);
-					target->setDueDate(newDueDate);
-					cout << "Due date updated." << endl;
-					user->log();
-				}
+				if((targetName.find("<")!=string::npos) || (targetName.find(">")!=string::npos) || (targetName.find("`")!=string::npos))
+                                {
+                                        cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
+                                }
 				else {
+					Component* target = user->getCurr()->getChild(targetName);
+					if(target) {
+						cout << "Enter new due date: " << endl;
+						getline(cin, newDueDate);
+						if((newDueDate.find("<")!=string::npos) || (newDueDate.find(">")!=string::npos) || (newDueDate.find("`")!=string::npos))
+                                		{
+                                        		cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
+                                		}
+						else {
+						target->setDueDate(newDueDate);
+						cout << "Due date updated." << endl;
+						user->log();
+						}
+					}
+					else {
 					cout << "Task/list Not Found..." << endl;
+					}
 				}
 			}
 			else {
 				cout << "Invalid Choice" << endl;
+				
 			}
 		}
 
