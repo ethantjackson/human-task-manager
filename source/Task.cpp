@@ -1,6 +1,6 @@
 #include "../header/Task.h"
 
-Task::Task(string title, TaskList* parentList)
+Task::Task(string ctitle, TaskList* parentList)
 {
     this->title = title;
     this->parentList = parentList;
@@ -21,11 +21,6 @@ Task::Task(string title, string dueDate,
 TaskList* Task::getParent()
 {
     return parentList;
-}
-
-string Task::getTitle()
-{
-    return title;
 }
 
 int Task::countSubTasks()
@@ -72,19 +67,4 @@ void Task::display()
     cout << title;
     if (done) cout << "(DONE)";
     cout << endl;
-}
-
-void Task::setDescription(string newDescription)
-{
-    description = newDescription;
-}
-
-void Task::setDueDate(string newDueDate)
-{
-    dueDate = newDueDate;
-}
-
-void Task::rename(string title)
-{
-    this->title = title;
 }
