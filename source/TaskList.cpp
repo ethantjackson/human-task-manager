@@ -46,11 +46,6 @@ TaskList* TaskList::navigate(string task)
     return this;
 }
 
-string TaskList::getTitle()
-{
-    return title;
-}
-
 int TaskList::countSubTasks()
 {
     int numSubs = 0;
@@ -197,21 +192,6 @@ void TaskList::display()
         }
         c->display();
     }
-}
-
-void TaskList::setDescription(string description)
-{
-    this->description = description;
-}
-
-void TaskList::setDueDate(string dueDate)
-{
-    this->dueDate = dueDate;
-}
-
-void TaskList::rename(string title)
-{
-    this->title = title;
 }
 
 void TaskList::info() {
