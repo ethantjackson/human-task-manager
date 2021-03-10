@@ -7,19 +7,19 @@
 #include "header/UserControl.h"
 
 #include "gtest/gtest.h"
-
+//tofu tests
 TaskList* emptyList = new TaskList("EmptyList", nullptr);
 TaskList* homeList = new TaskList("Home List", nullptr);
 TaskList* bobList = new TaskList("Home List", nullptr);
 TaskList* chrisList = new TaskList("Home List", nullptr);
 TaskList* subList = new TaskList("Home List", nullptr);
-
-TaskList* nullGetChildList = new TaskList("Home List", nullptr);
-TaskList* getChildList = new TaskList("Home List", nullptr);
-
 TaskList* delList = new TaskList("Home List", nullptr);
 TaskList* delWholeList = new TaskList("Home List", nullptr);
 TaskList* delMiddleList = new TaskList("Home List", nullptr);
+
+//Jumbo Tests
+TaskList* nullGetChildList = new TaskList("Home List", nullptr);
+TaskList* getChildList = new TaskList("Home List", nullptr);
 
 
 TEST(taskTest, emptyList){
@@ -38,17 +38,6 @@ TEST(taskTest, subTasksLists){
 	EXPECT_EQ("<tl>`Home List```0`<tl>`subTaskList```0`</tl>`<tl>`subSubTaskList```0`</tl>`<tl>`subSubSubTaskList```0`</tl>`</tl>`", subList->save());
 }
 
-TEST(taskTest, nullGetChildList) {
-	string pleaseReturnNullptr = "I said please?";
-	nullGetChildList->getChild(pleaseReturnNullptr);
-	EXPECT_EQ(nullptr, getChildList->getChild(pleaseReturnNullptr));
-}
-
-TEST(taskTest, getChildList) {
-	string targetName = "make test cases";
-	getChildList->getChild(targetName);
-	EXPECT_EQ("<tl>`Home List```0`<t>`make test cases`due today`push nullptr cases`0`</t>`</tl>`", getChildList->save());
-}
 
 TEST(taskTest, deleteSubLists){
 	EXPECT_EQ("<tl>`Home List```0`<tl>`subTaskList```0`</tl>`<tl>`subSubTaskList```0`</tl>`</tl>`", delList->save());
@@ -62,10 +51,23 @@ TEST(taskTest, deleteMiddleList){
 	EXPECT_EQ("<tl>`Home List```0`<tl>`subTaskList```0`</tl>`<tl>`subSubSubTaskList```0`</tl>`</tl>`", delMiddleList->save());
 }
 
+TEST(taskTest, nullGetChildList) {
+	string pleaseReturnNullptr = "I said please?";
+	nullGetChildList->getChild(pleaseReturnNullptr);
+	EXPECT_EQ(nullptr, getChildList->getChild(pleaseReturnNullptr));
+}
+
+TEST(taskTest, getChildList) {
+	string targetName = "make test cases";
+	getChildList->getChild(targetName);
+	EXPECT_EQ("<tl>`Home List```0`<t>`make test cases`due today`push nullptr cases`0`</t>`</tl>`", getChildList->save());
+}
+
+
 TEST(taskTest, singleTask){
 	EXPECT_EQ("<tl>`Home List```0`<tl>`clean the house```0`</tl>`</tl>`", homeList->save());
 	delete emptyList; delete homeList; delete bobList; delete chrisList; delete subList; delete delList; delete delWholeList; delete delMiddleList; 
-  delete subList; delete getChildList; delete nullGetChildList;
+   delete getChildList; delete nullGetChildList;
 
 }
 
