@@ -141,7 +141,7 @@ void UserControl::login()
 		while((name.find("<")!=string::npos) || (name.find(">")!=string::npos) || (name.find("`")!=string::npos))
                 {
 			incorrect = true;
-			cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted...1" << endl;
+			cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
 			cout << "Enter username: ";
 			cin >> name;
 			cout << endl;
