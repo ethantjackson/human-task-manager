@@ -83,3 +83,4 @@
  
  ## Testing
   * Human Task Manager was tested throughly using googletest unit testing. We created several mock Task/TaskList trees, and compared function return values to expected results for each of these mock trees.
+  * Valgrind was utilized to verify that no memory leaks existed in the main and test funcitons. 
