@@ -138,6 +138,14 @@ void UserControl::login()
 		cout << "Enter username: ";
 		cin >> name;
 		cout << endl;
+		while((name.find("<")!=string::npos) || (name.find(">")!=string::npos) || (name.find("`")!=string::npos))
+                {
+			incorrect = true;
+			cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted...1" << endl;
+			cout << "Enter username: ";
+			cin >> name;
+			cout << endl;
+		}
 		for (auto p : users) {
 			if (name == p.first) {
 				cout << "Enter password: ";
@@ -173,6 +181,7 @@ void UserControl::login()
 				incorrect = true;
 			}
 		}
+		
 		if (!incorrect) {
 			cout << "User not found: " << endl;
 			cout << "    (1) Add new user?" << endl;
@@ -182,9 +191,15 @@ void UserControl::login()
 			if (choice == '1') {
 				cout << endl << "Enter password: ";
 				cin >> pass;
-				cout << endl;
-				users.push_back(make_pair(name, pass));
-				this->username = name;
+				if((pass.find("<")!=string::npos) || (pass.find(">")!=string::npos) || (pass.find("`")!=string::npos))
+                		{
+                			cout << "The use of the characters \"<\", \">\", and \"`\" are not permitted..." << endl;
+               	 		}
+				else {
+					cout << endl;
+					users.push_back(make_pair(name, pass));
+					this->username = name;
+				}
 			}
 			else if (choice == '2') {
 				if (users.empty()) {
