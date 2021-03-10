@@ -82,8 +82,6 @@ int main(int argc, char** argv){
 	subList->appendTaskList("<tl>`subTaskList```0`</tl>`");
 	subList->appendTaskList("<tl>`subSubTaskList```0`</tl>`");
 	subList->appendTaskList("<tl>`subSubSubTaskList```0`</tl>`");
-
-	getChildList->appendTask("<t>`make test cases`due today`push nullptr cases`0`</t1>`");
 	
 	delList->appendTaskList("<tl>`subTaskList```0`</tl>`");
 	delList->appendTaskList("<tl>`subSubTaskList```0`</tl>`");
