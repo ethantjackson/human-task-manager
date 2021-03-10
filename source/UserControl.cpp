@@ -5,7 +5,7 @@ UserControl::UserControl() {
 	homeList = new TaskList("Home List", nullptr);
 	ifstream sfile;
 
-	sfile.open("Users.txt");
+	sfile.open("Users`.txt");
 	if (sfile.is_open()) {
 		string username;
 		string password;
@@ -94,7 +94,7 @@ void UserControl::save()
 void UserControl::saveUsers() {
 	 ofstream sfile;
 
-        sfile.open("Users.txt");
+        sfile.open("Users`.txt");
         if (sfile.is_open()) {
                 for (auto p : users) {
                         sfile << p.first << "`" << p.second << "`";
