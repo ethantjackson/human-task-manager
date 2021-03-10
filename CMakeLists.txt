@@ -14,6 +14,10 @@ ADD_EXECUTABLE(task
 
 ADD_EXECUTABLE(test
 	test.cpp
+	source/InitFactory.cpp
+	source/UserControl.cpp
+	source/Task.cpp
+	source/TaskList.cpp
 )
 
 TARGET_LINK_LIBRARIES(test gtest)
