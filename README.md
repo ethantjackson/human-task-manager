@@ -79,8 +79,7 @@
 
 
  ## Installation/Usage
- * The application is run completely through the command line. You can use cmake to compile the program. The application can then be run using the "task" executable, with "$./task". 
+ * Human Task Manager is run completely through the command line. You can use cmake to compile the program. The application can then be run using the "task" executable, with "$./task". 
  
  ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
- 
+  * Human Task Manager was tested throughly using googletest unit testing. We created several mock Task/TaskList trees, and compared function return values to expected results for each of these mock trees.
