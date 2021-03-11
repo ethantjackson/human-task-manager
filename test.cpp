@@ -17,9 +17,10 @@ TaskList* delList = new TaskList("Home List", nullptr);
 TaskList* delWholeList = new TaskList("Home List", nullptr);
 TaskList* delMiddleList = new TaskList("Home List", nullptr);
 
-//Jumbo Tests
+//JimmyNoBob Tests
 TaskList* nullGetChildList = new TaskList("Home List", nullptr);
 TaskList* getChildList = new TaskList("Home List", nullptr);
+TaskList* numSubTask = new TaskList("Home List", nullptr);
 
 //Tofu tests 
 TEST(taskTest, emptyList){
@@ -49,10 +50,9 @@ TEST(taskTest, deleteWholeList){
 TEST(taskTest, deleteMiddleList){
 	EXPECT_EQ("<tl>`Home List```0`<tl>`subTaskList```0`</tl>`<tl>`subSubSubTaskList```0`</tl>`</tl>`", delMiddleList->save());
 }
-//Jumbo tests
+//JimmyNoBob tests
 TEST(taskTest, nullGetChildList) {
 	string pleaseReturnNullptr = "I said please?";
-	nullGetChildList->getChild(pleaseReturnNullptr);
 	EXPECT_EQ(nullptr, getChildList->getChild(pleaseReturnNullptr));
 }
 
@@ -61,11 +61,44 @@ TEST(taskTest, getChildList) {
 	getChildList->getChild(targetName);
 	EXPECT_EQ("<tl>`Home List```0`<t>`make test cases`due today`push nullptr cases`0`</t>`</tl>`", getChildList->save());
 }
+
+TEST(taskTest, countSubTasksTest) {
+	EXPECT_EQ(1, numSubTask->countSubTasks());
+}
+
+TEST(taskTest, countSubTasksEmptyTest) {
+	EXPECT_EQ(0, emptyList->countSubTasks());
+}
+
+TEST(taskTest, countSubTasksChrisListTest) {
+	EXPECT_EQ(4, chrisList->countSubTasks());
+}
+
+TEST(taskTest, countSubTasksSubList) {
+	EXPECT_EQ(0, subList->countSubTasks());
+}
+
+TEST(taskTest, countSubTaskListsTest) {
+	EXPECT_EQ(2, numSubTask->countSubTaskLists());
+}
+
+TEST(taskTest, countSubTaskListsEmptyTest) {
+	EXPECT_EQ(1, emptyList->countSubTaskLists());
+}
+
+TEST(taskTest, countSubTaskListsChrisListTest) {
+	EXPECT_EQ(1, chrisList->countSubTaskLists());
+}
+
+TEST(taskTest, countSubTaskListSubList) {
+	EXPECT_EQ(4, subList->countSubTaskLists());
+}
+
 //Delete class instances
 TEST(taskTest, singleTask){
 	EXPECT_EQ("<tl>`Home List```0`<tl>`clean the house```0`</tl>`</tl>`", homeList->save());
 	delete emptyList; delete homeList; delete bobList; delete chrisList; delete subList; delete delList; delete delWholeList; delete delMiddleList; 
-   delete getChildList; delete nullGetChildList;
+   delete getChildList; delete nullGetChildList; delete numSubTask;
 
 }
 
@@ -100,6 +133,9 @@ int main(int argc, char** argv){
 	
 	//jumbo test actions
 	getChildList->appendTask("<t>`make test cases`due today`push nullptr cases`0`</t1>`");
+	
+	numSubTask->appendTaskList("<tl>`This is a Task List```0`</tl>`");
+	numSubTask->appendTask("<t>`This is a Task```0`</tl>`");
 
 	::testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
