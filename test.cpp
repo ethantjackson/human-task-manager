@@ -18,10 +18,13 @@ TaskList* delWholeList = new TaskList("Home List", nullptr);
 TaskList* delMiddleList = new TaskList("Home List", nullptr);
 TaskList* complexList = new TaskList("Home List", nullptr);
 
+
 //JimmyNoBob Tests
 TaskList* nullGetChildList = new TaskList("Home List", nullptr);
 TaskList* getChildList = new TaskList("Home List", nullptr);
 TaskList* numSubTask = new TaskList("Home List", nullptr);
+TaskList* jimmyList = new TaskList("Home List", nullptr);
+
 
 //Tofu tests 
 TEST(taskTest, emptyList){
@@ -100,17 +103,36 @@ TEST(taskTest, countSubTaskListSubList) {
 	EXPECT_EQ(4, subList->countSubTaskLists());
 }
 
+TEST(taskTest, getLevelEmptyTest) {
+	EXPECT_EQ(0, emptyList->getLevel());
+}
+
+TEST(taskTest, getLevelChrisListTest) {
+	string targetName = "clean windows";
+        EXPECT_EQ(1, chrisList->getChild(targetName)->getLevel());
+}
+
+TEST(taskTest, getLevelSubListTest) {
+	string targetName = "subSubSubTaskList";
+	EXPECT_EQ(1, subList->getChild(targetName)->getLevel());
+}
+
+TEST(taskTest, getLevelJimmyListTest) {
+	string targetName = "This is a Task List";
+	TaskList* target = static_cast<TaskList*>(jimmyList->getChild(targetName));
+	EXPECT_EQ(2, target->getChild("This is a Task")->getLevel()); 
+}
+
 //Delete class instances
 TEST(taskTest, singleTask){
 	EXPECT_EQ("<tl>`Home List```0`<tl>`clean the house```0`</tl>`</tl>`", homeList->save());
-	delete emptyList; delete homeList; delete bobList; delete chrisList; delete subList; delete delList; delete delWholeList; delete delMiddleList;
-	delete complexList;
-   delete getChildList; delete nullGetChildList; delete numSubTask;
-
+	delete emptyList; delete homeList; delete bobList; delete chrisList; delete subList; delete delList; delete delWholeList; delete delMiddleList; 
+   delete getChildList; delete nullGetChildList; delete numSubTask; delete jimmyList;
 }
 
 int main(int argc, char** argv){
 	//tofu test actions
+	
 	homeList->appendTaskList("<tl>`clean the house```0`</tl>`");
 	bobList->appendTaskList("<tl>`Wash the car`3/10/21`Urgent!`0`</tl>`");
 
@@ -140,7 +162,7 @@ int main(int argc, char** argv){
 		
 	complexList->appendTaskList("<tl>`wash car```0`</tl>`");
 	TaskList* example = static_cast<TaskList*>(complexList->getChild("wash car"));
-	
+
 	example->appendTask("<t>`water rinse```0`</t>`");
 	example->appendTask("<t>`apply soap```0`</t>`");
 	example->appendTask("<t>`clean windows```0`</t>`");
@@ -149,11 +171,16 @@ int main(int argc, char** argv){
 	example->appendTask("<t>`apply wax```0`</t>`");
 	example->appendTask("<t>`buff dry```0`</t>`");
 
-	//jumbo test actions
 	getChildList->appendTask("<t>`make test cases`due today`push nullptr cases`0`</t1>`");
-	
+
 	numSubTask->appendTaskList("<tl>`This is a Task List```0`</tl>`");
-	numSubTask->appendTask("<t>`This is a Task```0`</tl>`");
+	numSubTask->appendTask("<t>`This is a Task```0`</t>`");
+	
+	jimmyList->appendTaskList("<tl>`This is a Task List```0`</tl>`");
+	string targetName = "This is a Task List";
+	TaskList* target = static_cast<TaskList*>(jimmyList->getChild(targetName));
+	target->appendTask("<t>`This is a Task```0`<t>`");
+
 
 	::testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
