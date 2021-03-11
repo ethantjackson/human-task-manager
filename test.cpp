@@ -16,6 +16,7 @@ TaskList* subList = new TaskList("Home List", nullptr);
 TaskList* delList = new TaskList("Home List", nullptr);
 TaskList* delWholeList = new TaskList("Home List", nullptr);
 TaskList* delMiddleList = new TaskList("Home List", nullptr);
+TaskList* complexList = new TaskList("Home List", nullptr);
 
 //JimmyNoBob Tests
 TaskList* nullGetChildList = new TaskList("Home List", nullptr);
@@ -50,6 +51,11 @@ TEST(taskTest, deleteWholeList){
 TEST(taskTest, deleteMiddleList){
 	EXPECT_EQ("<tl>`Home List```0`<tl>`subTaskList```0`</tl>`<tl>`subSubSubTaskList```0`</tl>`</tl>`", delMiddleList->save());
 }
+
+TEST(taskTest, complexList){
+	EXPECT_EQ("<tl>`Home List```0`<tl>`wash car```0`<t>`water rinse```0`</t>`<t>`apply soap```0`</t>`<t>`clean windows```0`</t>`<t>`clean wheels```0`</t>`<t>`clay bar```0`</t>`<t>`apply wax```0`</t>`<t>`buff dry```0`</t>`</tl>`</tl>`", complexList->save());
+}
+
 //JimmyNoBob tests
 TEST(taskTest, nullGetChildList) {
 	string pleaseReturnNullptr = "I said please?";
@@ -97,7 +103,8 @@ TEST(taskTest, countSubTaskListSubList) {
 //Delete class instances
 TEST(taskTest, singleTask){
 	EXPECT_EQ("<tl>`Home List```0`<tl>`clean the house```0`</tl>`</tl>`", homeList->save());
-	delete emptyList; delete homeList; delete bobList; delete chrisList; delete subList; delete delList; delete delWholeList; delete delMiddleList; 
+	delete emptyList; delete homeList; delete bobList; delete chrisList; delete subList; delete delList; delete delWholeList; delete delMiddleList;
+	delete complexList;
    delete getChildList; delete nullGetChildList; delete numSubTask;
 
 }
@@ -130,7 +137,18 @@ int main(int argc, char** argv){
 	delMiddleList->appendTaskList("<tl>`subSubTaskList```0`</tl>`");
 	delMiddleList->appendTaskList("<tl>`subSubSubTaskList```0`</tl>`");
 	delMiddleList->remove("subSubTaskList");
+		
+	complexList->appendTaskList("<tl>`wash car```0`</tl>`");
+	TaskList* example = static_cast<TaskList*>(complexList->getChild("wash car"));
 	
+	example->appendTask("<t>`water rinse```0`</t>`");
+	example->appendTask("<t>`apply soap```0`</t>`");
+	example->appendTask("<t>`clean windows```0`</t>`");
+	example->appendTask("<t>`clean wheels```0`</t>`");
+	example->appendTask("<t>`clay bar```0`</t>`");
+	example->appendTask("<t>`apply wax```0`</t>`");
+	example->appendTask("<t>`buff dry```0`</t>`");
+
 	//jumbo test actions
 	getChildList->appendTask("<t>`make test cases`due today`push nullptr cases`0`</t1>`");
 	
