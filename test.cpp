@@ -121,13 +121,13 @@ TEST(taskTest, getLevelJimmyListTest) {
 	string targetName = "This is a Task List";
 	TaskList* target = static_cast<TaskList*>(jimmyList->getChild(targetName));
 	EXPECT_EQ(2, target->getChild("This is a Task")->getLevel()); 
-}
+} 
 
 //Delete class instances
 TEST(taskTest, singleTask){
 	EXPECT_EQ("<tl>`Home List```0`<tl>`clean the house```0`</tl>`</tl>`", homeList->save());
 	delete emptyList; delete homeList; delete bobList; delete chrisList; delete subList; delete delList; delete delWholeList; delete delMiddleList; 
-   delete getChildList; delete nullGetChildList; delete numSubTask; delete jimmyList;
+   delete getChildList; delete nullGetChildList; delete numSubTask; delete complexList; delete jimmyList; 
 }
 
 int main(int argc, char** argv){
@@ -180,7 +180,6 @@ int main(int argc, char** argv){
 	string targetName = "This is a Task List";
 	TaskList* target = static_cast<TaskList*>(jimmyList->getChild(targetName));
 	target->appendTask("<t>`This is a Task```0`<t>`");
-
 
 	::testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();

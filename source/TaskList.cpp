@@ -152,6 +152,9 @@ void TaskList::appendTask(string saveInfo) {
 
 void TaskList::removeAll()
 {
+  for (unsigned int i = 0; i < contents.size(); ++i) {
+	delete contents.at(i);
+  }
   contents.clear();
 }
 
