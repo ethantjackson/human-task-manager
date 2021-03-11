@@ -17,7 +17,7 @@ void help()
         cout << "    q: quit" << endl;
         cout << "    s: save" << endl;
         cout << "    u: undo last action" << endl;
-		cout << "    z: redo" << endl;
+	cout << "    z: redo" << endl;
         cout << "    l: login to new user" << endl;
 }
 
